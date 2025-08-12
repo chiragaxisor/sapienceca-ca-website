@@ -2,14 +2,15 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <div class="footer-logo">
-                        <div class="logo-icon">M</div>
+                    <img src="img/logo.png" alt="Sapience Logo" class="logo-image" width="" height="50">
+                    <!-- <div class="footer-logo"> -->
+                        <!-- <div class="logo-icon">M</div>
                         <div class="logo-text">MOVENEY</div>
-                        <p class="tagline">PAYMENTS MADE EASY</p>
-                    </div>
+                        <p class="tagline">PAYMENTS MADE EASY</p> -->
+                    <!-- </div> -->
                     <p class="footer-description">Sapience is committed to supporting dynamic organizations, ensuring that all member firms share a common goal: delivering best-in-class solutions to clients worldwide. As approved auditors by the Ministry of Economy and Free Zones, with expertise in assisting clients with Federal Tax Authority (FTA) compliance, we strive to be a one-stop solution for all financial needs.</p>
                     <!-- <p class="footer-description">We are working tirelessly to bring to our merchants, state of the art payment services and merchant focussed financial services that can significantly improve the world of shopping providing a seamless customer experience. Lets grow together!</p> -->
-                    <p class="copyright">© 2023 Moveney App. All rights reserved</p>
+                    <p class="copyright">© 2025 Sapienceca. All rights reserved</p>
                 </div>
                 <div class="footer-right">
                     

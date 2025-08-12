@@ -37,8 +37,9 @@ try {
             <div class="header-content">
                 <a href="index.php" class="nav-link">
                 <div class="logo">
-                    <div class="logo-icon">S</div>
-                    <div class="logo-text">apience</div>
+                    <img src="img/logo.png" alt="Sapience Logo" class="logo-image" width="" height="50">
+                    <!-- <div class="logo-icon">S</div>
+                    <div class="logo-text">apience</div> -->
                 </div></a>
                 <nav class="nav">
                     <a href="about.php" class="nav-link">About Us</a>
