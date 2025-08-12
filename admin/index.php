@@ -15,6 +15,8 @@ $success = '';
 
 // Handle login form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+     
+
     // Verify CSRF token
     if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
         $error = 'Invalid request. Please try again.';
@@ -33,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($attempts >= LOGIN_MAX_ATTEMPTS) {
                     $error = 'Too many login attempts. Please try again later.';
                 } else {
-                    $stmt = $pdo->prepare("SELECT id, name, email, password, role, status FROM users WHERE email = ? AND status = 'active'");
+                    $stmt = $pdo->prepare("SELECT id, name, email, password, role FROM users WHERE email = ?");
                     $stmt->execute([$email]);
                     $user = $stmt->fetch();
                     
@@ -60,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                 }
             } catch (Exception $e) {
+              
                 error_log("Login error: " . $e->getMessage());
                 $error = 'An error occurred. Please try again later.';
             }
@@ -350,29 +353,19 @@ function resetLoginAttempts($ip) {
                                 <div class="invalid-feedback" id="passwordError"></div>
                             </div>
                             
-                            <div class="mb-3 form-check">
+                            <!-- <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
                                 <label class="form-check-label" for="remember">
                                     Remember me
                                 </label>
-                            </div>
+                            </div> -->
                             
                             <button type="submit" class="btn btn-primary btn-login w-100" id="loginBtn">
                                 <i class="fas fa-sign-in-alt me-2"></i> Login
                             </button>
                         </form>
                         
-                        <div class="text-center mt-3">
-                            <small class="text-muted">
-                                Don't have an account? <a href="register.php">Sign up</a>
-                            </small>
-                        </div>
                         
-                        <div class="text-center mt-2">
-                            <small class="text-muted">
-                                <a href="forgot-password.php">Forgot your password?</a>
-                            </small>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -413,7 +406,7 @@ function resetLoginAttempts($ip) {
             
             // Real-time validation
             const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
+            // const passwordInput = document.getElementById('password');
             
             emailInput.addEventListener('input', function() {
                 validateEmail(this);

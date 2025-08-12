@@ -30,6 +30,18 @@ CREATE TABLE IF NOT EXISTS team_members (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+CREATE TABLE login_attempts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ip_address VARCHAR(45) NOT NULL,
+    email VARCHAR(255) DEFAULT NULL,
+    user_agent TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    INDEX idx_ip_address (ip_address),
+    INDEX idx_created_at (created_at),
+    INDEX idx_ip_created (ip_address, created_at)
+);
+
 
 -- Services table
 CREATE TABLE services (
