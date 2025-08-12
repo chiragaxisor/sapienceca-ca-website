@@ -16,7 +16,7 @@ try {
         ]
     );
     // 2. Fetch services (limit as needed)
-    $stmt = $pdo->query("SELECT title, description, image, icon_image FROM services ORDER BY created_at DESC LIMIT 8");
+    $stmt = $pdo->query("SELECT id,title, description, image, icon_image FROM services ORDER BY created_at DESC LIMIT 8");
     $services = $stmt->fetchAll();
 } catch (PDOException $e) {
     $services = [];
@@ -85,6 +85,7 @@ try {
              <div class="features-grid">
                 <?php if (!empty($services)): ?>
                     <?php foreach ($services as $service): ?>
+                        <a href="service-details.php?id=<?php echo ($service['id']); ?>" style="text-decoration: none; color: inherit;">
                         <div class="feature-card">
                             <?php if (!empty($service['icon_image'])): ?>
                                 <img src="admin/<?php echo htmlspecialchars($service['icon_image']); ?>" alt="Service Image" class="product-image-admin">
@@ -94,6 +95,7 @@ try {
                             <h3><?php echo htmlspecialchars($service['title']); ?></h3>
                             <!-- <p><?php echo htmlspecialchars($service['description']); ?></p> -->
                         </div>
+                        </a>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p>No services found.</p>

@@ -1,82 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookkeeping & Accounting | Moveney</title>
-    <link rel="stylesheet" href="css/common.css">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="nav-link">
-                <div class="logo">
-                    <div class="logo-icon">S</div>
-                    <div class="logo-text">apience</div>
-                </div></a>
-                <nav class="nav">
-                    <a href="about.html" class="nav-link">About Us</a>
-                    <div class="dropdown">
-                        <a href="#" class="nav-link">Services</a>
-                        <div class="dropdown-content">
-                            <a href="services.html">All Services</a>
-                            <a href="service-bookkeeping.html">Bookkeeping</a>
-                            <a href="#">Virtual CFO</a>
-                            <a href="#">System Setup</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-link">Contact Us</a>
-                    <a href="#login" class="login-btn">Book an appointment</a>
-                </nav>
-            </div>
-        </div>
-    </header>
+<?php 
+
+include 'includes/header.php'; 
+
+// 1. Include DB config and connect
+require_once 'admin/config.php';
+try {
+    $pdo = new PDO(
+        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+        DB_USER,
+        DB_PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
+
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = (int) $_GET['id'];
+
+    // Prepare statement to avoid SQL injection
+    $stmt = $pdo->prepare("
+        SELECT * 
+        FROM services 
+        WHERE id = :id
+        LIMIT 1
+    ");
+
+    // Bind the ID parameter
+    $stmt->execute(['id' => $id]);
+
+    // Fetch single record
+    $service = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // 2. Fetch services (limit as needed)
+    // $stmt = $pdo->query("SELECT title, description, image, icon_image FROM services ORDER BY created_at DESC LIMIT 8");
+
+
+    // $services = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $service = [];
+}
+
+?>
+
     <section class="service-detail-section">
         <div class="container service-detail-container">
             <div class="service-detail-image">
-                <img src="https://sapienceca.com/wp-content/uploads/2023/02/Untitled-design-98-min.png" alt="Bookkeeping & Accounting" />
+            <?php if (!empty($service['image'])): ?>
+                <img src="admin/<?php echo htmlspecialchars($service['image']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" />
+            <?php else: ?>
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Service Image" />        
+            <?php endif; ?>
+                <!-- <img src="https://sapienceca.com/wp-content/uploads/2023/02/Untitled-design-98-min.png" alt="Bookkeeping & Accounting" /> -->
             </div>
             <div class="service-detail-content">
-                <h1>Bookkeeping & Accounting</h1>
-                <p class="service-detail-desc">Comprehensive bookkeeping and accounting services to keep your business finances organized, compliant, and up-to-date. Our expert team ensures accurate record-keeping, timely reporting, and full compliance with regulatory standards, so you can focus on growing your business.</p>
+                
+                <h1> 
+                    <?php echo htmlspecialchars($service['title'] ?? 'Service Not Found'); ?>
+                     </h1>
+                <p class="service-detail-desc">     
+                    <?php echo $service['description'] ?? 'No description available.'; ?>
+                </p>
+
+                <!-- <p class="service-detail-desc">Comprehensive bookkeeping and accounting services to keep your business finances organized, compliant, and up-to-date. Our expert team ensures accurate record-keeping, timely reporting, and full compliance with regulatory standards, so you can focus on growing your business.</p>
                 <ul class="service-detail-list">
                     <li>Day-to-day bookkeeping</li>
                     <li>Financial statement preparation</li>
                     <li>Bank reconciliation</li>
                     <li>Accounts payable & receivable management</li>
                     <li>Tax-ready financials</li>
-                </ul>
-                <a href="contact.html" class="btn-primary">Enquire Now</a>
+                </ul> -->
+                <a href="https://calendly.com/sapient-kpo" style="margin-top:20px" target="_blank" class="btn-primary">Enquire Now</a>
             </div>
         </div>
     </section>
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-logo">
-                        <div class="logo-icon">M</div>
-                        <div class="logo-text">MOVENEY</div>
-                        <p class="tagline">PAYMENTS MADE EASY</p>
-                    </div>
-                    <p class="footer-description">Moveney is an FCA approved, PCI DSS regulated, payments disruptor founded with a vision to provide a one stop platform that encompasses everything a merchant needs to achieve growth and establish themselves as a trusted brand in the retail and e-commerce market while making the payment ecosystem simpler and accessible to all.</p>
-                    <p class="footer-description">We are working tirelessly to bring to our merchants, state of the art payment services and merchant focussed financial services that can significantly improve the world of shopping providing a seamless customer experience. Lets grow together!</p>
-                    <p class="copyright">© 2023 Moveney App. All rights reserved</p>
-                </div>
-                <div class="footer-right">
-                    <div class="social-links">
-                        <a href="#" class="social-link">📷</a>
-                        <a href="#" class="social-link">🐦</a>
-                        <a href="#" class="social-link">📘</a>
-                    </div>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Terms & conditions</a>
-                        <a href="#" class="footer-link">Privacy Policies</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+    
+
+    <?php include 'includes/footer.php'; ?>

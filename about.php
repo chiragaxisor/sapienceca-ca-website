@@ -12,7 +12,7 @@ try {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]
     );
-    $stmt = $pdo->query("SELECT name, avatar, position, linkedin_profile FROM team_members ORDER BY id ASC");
+    $stmt = $pdo->query("SELECT id, name, avatar, position, linkedin_profile FROM team_members ORDER BY id ASC");
     $team_members = $stmt->fetchAll();
 } catch (PDOException $e) {
     $team_members = [];
@@ -72,6 +72,7 @@ try {
 
                     <?php if (!empty($team_members)): ?>
                     <?php foreach ($team_members as $member): ?>
+                        <a href="team-details.php?id=<?php echo htmlspecialchars($member['id']); ?>" style="text-decoration: none; color: inherit;">    
                         <div class="team-card">
                             <div class="team-img-wrap large">
                                 <img src="admin/<?php echo htmlspecialchars($member['avatar']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>">
@@ -81,6 +82,7 @@ try {
                                 <a class="linkedin-btn" href="<?php echo htmlspecialchars($member['linkedin_url']); ?>" target="_blank" rel="noopener">View LinkedIn</a>
                             <?php endif; ?>
                         </div>
+                        </a>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p>No team members found.</p>
