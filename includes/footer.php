@@ -1,61 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services | Moveney</title>
-    <link rel="stylesheet" href="css/common.css">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="nav-link">
-                <div class="logo">
-                    <div class="logo-icon">S</div>
-                    <div class="logo-text">apience</div>
-                </div></a>
-                <nav class="nav">
-                    <a href="about.html" class="nav-link">About Us</a>
-                    <div class="dropdown">
-                        <a href="#" class="nav-link">Services</a>
-                        <div class="dropdown-content">
-                            <a href="services.html">All Services</a>
-                            <a href="service-bookkeeping.html">Bookkeeping</a>
-                            <a href="#">Virtual CFO</a>
-                            <a href="#">System Setup</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-link">Contact Us</a>
-                    <a href="#login" class="login-btn">Book an appointment</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <section class="services-section">
-        <div class="container">
-            <h2 class="services-title">Our Services</h2>
-            <div class="services-grid">
-                <a href="service-bookkeeping.html" class="service-card service-link">
-                    <h3>Bookkeeping & Accounting</h3>
-                    <p>Comprehensive bookkeeping and accounting services to keep your business finances organized, compliant, and up-to-date.</p>
-                </a>
-                <a href="#" class="service-card service-link">
-                    <h3>Virtual CFO</h3>
-                    <p>Strategic financial guidance and planning from experienced professionals, tailored to your business needs and growth goals.</p>
-                </a>
-                <a href="#" class="service-card service-link">
-                    <h3>System Setup & Migration</h3>
-                    <p>Seamless setup and migration of accounting systems, ensuring smooth transitions and minimal disruption to your operations.</p>
-                </a>
-                <a href="#" class="service-card service-link">
-                    <h3>Inventory Management</h3>
-                    <p>Efficient inventory management solutions to help you track, control, and optimize your stock across multiple locations.</p>
-                </a>
-            </div>
-        </div>
-    </section>
-    <footer class="footer">
+<footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
@@ -82,6 +25,8 @@
             </div>
         </div>
     </footer>
+</body>
+</html>
 
 <script>
 // Highlight active nav link based on current page
@@ -115,6 +60,3 @@ document.addEventListener('click', function(e) {
     });
 });
 </script>
-
-</body>
-</html>
