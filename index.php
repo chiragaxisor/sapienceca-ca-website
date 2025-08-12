@@ -150,7 +150,7 @@
         <div class="container">
             <div class="inventory-content">
                 <div class="inventory-visual">
-                    <img src="https://sapienceca.com/wp-content/uploads/2022/12/Untitled-design-37.png" alt="Large Inventory Image" style="">
+                    <img src="img/WhyChooseUs.jpeg" alt="Large Inventory Image" style="width:100%;border-radius:24px;display:block;">
                     <!-- width:100%;max-width:400px;border-radius:24px;display:block;margin:0 auto 24px auto; -->
                 <!-- </div> -->
                 </div>
@@ -355,8 +355,21 @@
             <h2 class="expertise-title">Softwares we have expertise on</h2>
             <div class="expertise-carousel">
                 <div class="expertise-track">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" class="expertise-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C#" class="expertise-logo">
+                    <img src="img/software/1-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/2-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/3-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/4-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/5-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/6-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/7-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/1-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/2-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/3-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/4-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/5-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/6-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/7-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C#" class="expertise-logo">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg" alt="C" class="expertise-logo">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg" alt="R" class="expertise-logo">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg" alt="Go" class="expertise-logo">
@@ -369,7 +382,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Oracle_logo.svg" alt="Oracle" class="expertise-logo">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Google-firebase-logo.svg" alt="Firebase" class="expertise-logo">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Logo_Microsoft_Azure.svg" alt="Azure" class="expertise-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_de_Microsoft_Office.svg" alt="MS Office" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_de_Microsoft_Office.svg" alt="MS Office" class="expertise-logo"> -->
                 </div>
             </div>
         </div>

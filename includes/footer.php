@@ -7,12 +7,40 @@
                         <div class="logo-text">MOVENEY</div>
                         <p class="tagline">PAYMENTS MADE EASY</p>
                     </div>
-                    <p class="footer-description">Moveney is an FCA approved, PCI DSS regulated, payments disruptor founded with a vision to provide a one stop platform that encompasses everything a merchant needs to achieve growth and establish themselves as a trusted brand in the retail and e-commerce market while making the payment ecosystem simpler and accessible to all.</p>
-                    <p class="footer-description">We are working tirelessly to bring to our merchants, state of the art payment services and merchant focussed financial services that can significantly improve the world of shopping providing a seamless customer experience. Lets grow together!</p>
+                    <p class="footer-description">Sapience is committed to supporting dynamic organizations, ensuring that all member firms share a common goal: delivering best-in-class solutions to clients worldwide. As approved auditors by the Ministry of Economy and Free Zones, with expertise in assisting clients with Federal Tax Authority (FTA) compliance, we strive to be a one-stop solution for all financial needs.</p>
+                    <!-- <p class="footer-description">We are working tirelessly to bring to our merchants, state of the art payment services and merchant focussed financial services that can significantly improve the world of shopping providing a seamless customer experience. Lets grow together!</p> -->
                     <p class="copyright">© 2023 Moveney App. All rights reserved</p>
                 </div>
                 <div class="footer-right">
-                    <div class="social-links">
+                    
+                    <div class="footer-contact">
+                        <h4 class="contact-country">UNITED ARAB EMIRATES</h4>
+                        <p class="contact-name">Nirav Patel</p>
+                        <p class="contact-address">
+                            303, HBL Building, PO Box 28860, Bank Street, Bur Dubai,<br>
+                            Dubai - UAE
+                        </p>
+                        <p class="contact-phone"> <a href="tel:+971554099388" > 📞 +971 55 409 9388 </a></p>
+                        <p class="contact-email">✉️ <a href="mailto:nirav@sapienceca.com">nirav@sapienceca.com</a></p>
+                    </div>
+                    <div class="footer-contact">
+                        <h4 class="contact-country">INDIA</h4>
+                        <p class="contact-name">Hatim Rupawala</p>
+                        <p class="contact-address">
+                            308-B, Shhlok Business Centre,<br>
+                            Besides Apple Hospital,<br>
+                            Udhna Darwaja, Ring Road,<br>
+                            Surat, Gujarat, India<br>
+                            Pincode: 395002
+                        </p>
+                        <p class="contact-phone"> <a href="tel:+919825753852" >  📞 +91 98257 53852 </a></p>
+                        <p class="contact-email">✉️ <a href="mailto:hatim@sapienceca.com">hatim@sapienceca.com</a></p>
+                    </div>
+                    
+
+
+
+                    <!-- <div class="social-links">
                         <a href="#" class="social-link">📷</a>
                         <a href="#" class="social-link">🐦</a>
                         <a href="#" class="social-link">📘</a>
@@ -20,7 +48,7 @@
                     <div class="footer-links">
                         <a href="#" class="footer-link">Terms & conditions</a>
                         <a href="#" class="footer-link">Privacy Policies</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

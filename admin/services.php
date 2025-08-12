@@ -88,9 +88,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }
                     }
                     
+                    $icon_image = '';
+                    if (isset($_FILES['icon_image']) && $_FILES['icon_image']['error'] == 0) {
+                        $validationErrorsicon_image = validateImageUpload($_FILES['icon_image']);
+                        
+                        if (empty($validationErrorsicon_image)) {
+                            $filenameicon_image = $_FILES['icon_image']['name'];
+                            $exticon_image = strtolower(pathinfo($filenameicon_image, PATHINFO_EXTENSION));
+                            $newnameicon_image = generateSecureFilename($filenameicon_image, $exticon_image);
+                            $upload_pathicon_image = 'uploads/services/' . $newnameicon_image;
+                            
+                            // Create directory if it doesn't exist
+                            if (!is_dir('uploads/services/')) {
+                                mkdir('uploads/services/', 0755, true);
+                            }
+                            
+                            if (move_uploaded_file($_FILES['icon_image']['tmp_name'], $upload_path)) {
+                                $icon_image = $upload_pathicon_image;
+                            } else {
+                                $messageicon_image = 'Failed to upload image.';
+                                $messageTypeicon_image = 'danger';
+                                break;
+                            }
+                        } else {
+                            $messageicon_image = 'Image validation failed: ' . implode(', ', $validationErrorsicon_image);
+                            $messageTypeicon_image = 'danger';
+                            break;
+                        }
+                    }
+                    
                     try {
-                        $stmt = $pdo->prepare("INSERT INTO services (user_id, title, description, image, created_at) VALUES (?, ?, ?, ?, NOW())");
-                        if ($stmt->execute([$_SESSION['user_id'], $title, $description, $image])) {
+                        $stmt = $pdo->prepare("INSERT INTO services (user_id, title, description, image,icon_image created_at) VALUES (?, ?, ?, ?, NOW())");
+                        if ($stmt->execute([$_SESSION['user_id'], $title, $description, $image, $icon_image])) {
                             $message = 'Service added successfully!';
                             $messageType = 'success';
                             
@@ -146,10 +175,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }
                     }
                     
+                    $image_updateicon_image = '';
+                    if (isset($_FILES['icon_image']) && $_FILES['icon_image']['error'] == 0) {
+                        $validationErrorsicon_image = validateImageUpload($_FILES['icon_image']);
+                        
+                        if (empty($validationErrorsicon_image)) {
+                            $filenameicon_image = $_FILES['icon_image']['name'];
+                            $exticon_image = strtolower(pathinfo($filenameicon_image, PATHINFO_EXTENSION));
+                            $newnameicon_image = generateSecureFilename($filenameicon_image, $exticon_image);
+                            $upload_pathicon_image = 'uploads/services/' . $newnameicon_image;
+                            
+                            if (move_uploaded_file($_FILES['icon_image']['tmp_name'], $upload_pathicon_image)) {
+                                $image_updateicon_image = $upload_pathicon_image;
+                            } else {
+                                $messageicon_image = 'Failed to upload image.';
+                                $messageTypeicon_image = 'danger';
+                                break;
+                            }
+                        } else {
+                            $messageicon_image = 'Image validation failed: ' . implode(', ', $validationErrorsicon_image);
+                            $messageTypeicon_image = 'danger';
+                            break;
+                        }
+                    }
+                    
                     try {
                         if ($image_update) {
                             $stmt = $pdo->prepare("UPDATE services SET title=?, description=?, image=?, updated_at=NOW() WHERE id=?");
                             $stmt->execute([$title, $description, $image_update, $id]);
+                        } else {
+                            $stmt = $pdo->prepare("UPDATE services SET title=?, description=?, updated_at=NOW() WHERE id=?");
+                            $stmt->execute([$title, $description, $id]);
+                        }
+                        if ($image_updateicon_image) {
+                            $stmt = $pdo->prepare("UPDATE services SET title=?, description=?, icon_image=?, updated_at=NOW() WHERE id=?");
+                            $stmt->execute([$title, $description, $image_updateicon_image, $id]);
                         } else {
                             $stmt = $pdo->prepare("UPDATE services SET title=?, description=?, updated_at=NOW() WHERE id=?");
                             $stmt->execute([$title, $description, $id]);
@@ -504,6 +564,11 @@ function generatePaginationLinks($currentPage, $totalPages, $baseUrl = 'services
                             <input type="file" class="form-control" id="image" name="image" accept="image/*">
                             <div class="form-text">Supported formats: JPG, PNG, GIF. Max size: 5MB</div>
                         </div>
+                        <div class="mb-3">
+                            <label for="icon_image" class="form-label">Service Icon Image</label>
+                            <input type="file" class="form-control" id="icon_image" name="icon_image" accept="image/*">
+                            <div class="form-text">Supported formats: JPG, PNG, GIF. Max size: 5MB</div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -541,6 +606,11 @@ function generatePaginationLinks($currentPage, $totalPages, $baseUrl = 'services
                             <label for="edit_image" class="form-label">Service Image</label>
                             <input type="file" class="form-control" id="edit_image" name="image" accept="image/*">
                             <div class="form-text">Leave empty to keep current image</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="icon_image" class="form-label">Service Icon Image</label>
+                            <input type="file" class="form-control" id="icon_image" name="icon_image" accept="image/*">
+                            <div class="form-text">Supported formats: JPG, PNG, GIF. Max size: 5MB</div>
                         </div>
                     </div>
                     <div class="modal-footer">
