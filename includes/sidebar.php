@@ -35,12 +35,20 @@
                 Analytics
             </a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : ''; ?>"
                 href="settings.php">
                 <i class="fas fa-cog"></i>
                 Settings
             </a>
+        </li> -->
+        <li class="nav-item">
+            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : ''; ?>"
+                href="logout.php" onclick="return confirm('Are you sure you want to logout?')">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                Logout
+            </a>
         </li>
+
     </nav>
 </div>

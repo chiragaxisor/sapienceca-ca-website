@@ -50,70 +50,11 @@ if ($currentUser) {
 
         <!-- Navigation Items -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="dashboard.php">
-                        <i class="fas fa-tachometer-alt me-1"></i>Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="projects.php">
-                        <i class="fas fa-project-diagram me-1"></i>Projects
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="team.php">
-                        <i class="fas fa-users me-1"></i>Team
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="analytics.php">
-                        <i class="fas fa-chart-line me-1"></i>Analytics
-                    </a>
-                </li>
-            </ul>
+            
 
             <!-- Right Side Navigation -->
             <ul class="navbar-nav ms-auto">
-                <!-- Search -->
-                <li class="nav-item me-2">
-                    <form class="d-flex" role="search" id="globalSearchForm">
-                        <div class="input-group">
-                            <input class="form-control form-control-sm" type="search" 
-                                   placeholder="Search..." aria-label="Search" id="globalSearchInput">
-                            <button class="btn btn-outline-light btn-sm" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </li>
-
-                <!-- Notifications -->
-                <li class="nav-item dropdown me-2">
-                    <a class="nav-link dropdown-toggle position-relative" href="#" role="button" 
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-bell"></i>
-                        <?php if ($notificationCount > 0): ?>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?php echo $notificationCount > 99 ? '99+' : $notificationCount; ?>
-                            </span>
-                        <?php endif; ?>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end notification-dropdown" aria-labelledby="navbarDropdown">
-                        <li><h6 class="dropdown-header">Notifications</h6></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li id="notificationsList">
-                            <div class="text-center py-3">
-                                <div class="spinner-border spinner-border-sm text-muted" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-center" href="notifications.php">View All</a></li>
-                    </ul>
-                </li>
-
+            
                 <!-- User Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" 
@@ -132,7 +73,7 @@ if ($currentUser) {
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li>
+                        <!-- <li>
                             <a class="dropdown-item" href="profile.php">
                                 <i class="fas fa-user me-2"></i>Profile
                             </a>
@@ -141,7 +82,7 @@ if ($currentUser) {
                             <a class="dropdown-item" href="settings.php">
                                 <i class="fas fa-cog me-2"></i>Settings
                             </a>
-                        </li>
+                        </li> -->
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item" href="logout.php" onclick="return confirm('Are you sure you want to logout?')">
