@@ -10,6 +10,7 @@ define('SECURE_ACCESS', true);
 
 // Include configuration
 require_once 'config.php';
+require_once 'includes/utils.php';
 
 // Database connection
 try {

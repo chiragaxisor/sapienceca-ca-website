@@ -153,7 +153,7 @@ $pageTitle = 'Dashboard - ' . APP_NAME;
                 <!-- Flash Messages -->
                 <?php if (FlashMessage::has()): ?>
                     <?php $message = FlashMessage::get(); ?>
-                    <div class="alert alert-<?php echo $message['type']; ?> alert-dismissible fade show" role="alert">
+                    <div class="alert  alert-dismissible fade show" role="alert">
                         <?php echo htmlspecialchars($message['message']); ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -161,7 +161,7 @@ $pageTitle = 'Dashboard - ' . APP_NAME;
                 
                 <!-- Welcome Section -->
                 <div class="welcome-section">
-                    <h1>Welcome back, <?php echo htmlspecialchars($user['name']); ?>! 👋</h1>
+                    <h1>Welcome back, Admin! 👋</h1>
                     <p>Here's what's happening with your projects today.</p>
                 </div>
             </main>
