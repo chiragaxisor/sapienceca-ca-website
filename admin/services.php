@@ -87,7 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             break;
                         }
                     }
-                    
+
+
                     $icon_image = '';
                     if (isset($_FILES['icon_image']) && $_FILES['icon_image']['error'] == 0) {
                         $validationErrorsicon_image = validateImageUpload($_FILES['icon_image']);
@@ -103,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 mkdir('uploads/services/', 0755, true);
                             }
                             
-                            if (move_uploaded_file($_FILES['icon_image']['tmp_name'], $upload_path)) {
+                            if (move_uploaded_file($_FILES['icon_image']['tmp_name'], $upload_pathicon_image)) {
                                 $icon_image = $upload_pathicon_image;
                             } else {
                                 $messageicon_image = 'Failed to upload image.';
@@ -118,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                     
                     try {
-                        $stmt = $pdo->prepare("INSERT INTO services (user_id, title, description, image,icon_image created_at) VALUES (?, ?, ?, ?, NOW())");
+                        $stmt = $pdo->prepare("INSERT INTO services (user_id, title, description, image,icon_image, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
                         if ($stmt->execute([$_SESSION['user_id'], $title, $description, $image, $icon_image])) {
                             $message = 'Service added successfully!';
                             $messageType = 'success';

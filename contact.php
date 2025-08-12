@@ -31,7 +31,7 @@
     <section class="cta-action-section">
         <div class="container cta-action-container">
             <h2 class="cta-action-title">Are You Ready To Take Action? We Are Ready To Help.</h2>
-            <a href="contact.html" class="cta-action-btn">Get Started</a>
+            <a href="https://calendly.com/sapient-kpo" target="_blank" class="cta-action-btn">Get Started</a>
         </div>
     </section>
     

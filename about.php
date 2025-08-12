@@ -1,12 +1,31 @@
 
-<?php include 'includes/header.php'; ?>
+<?php 
+include 'includes/header.php'; 
+require_once 'admin/config.php';
+try {
+    $pdo = new PDO(
+        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+        DB_USER,
+        DB_PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
+    $stmt = $pdo->query("SELECT name, avatar, position, linkedin_profile FROM team_members ORDER BY id ASC");
+    $team_members = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $team_members = [];
+}
+?>
 
     <section class="about-section">
         <div class="about-content">
             <div class="about-img-stack">
-                <div class="img-bg"></div>
-                <div class="img-bg2"></div>
-                <img src="https://sapienceca.com/wp-content/uploads/2022/12/Untitled-design-38.png" alt="Team Meeting">
+                <!-- <div class="img-bg"></div> -->
+                <!-- <div class="img-bg2"></div> -->
+                <!-- <img src="https://sapienceca.com/wp-content/uploads/2022/12/Untitled-design-38.png" alt="Team Meeting"> -->
+                <img src="img/AboutUs.jpeg" alt="Team Meeting">
             </div>
             <div class="about-text">
                 <h2>About Us</h2>
@@ -18,26 +37,29 @@
     <!-- Mission Section -->
     <section class="mv-section mv-mission">
         <div class="container mv-flex mv-reverse">
+            <div class="mv-img-wrap">
+                <img src="img/Mission.jpg" alt="Mission Image">
+            </div>
+
             <div class="mv-content">
                 <h2>Mission</h2>
                 <p>Our mission is to empower businesses with innovative, reliable, and user-friendly financial solutions that simplify operations, drive growth, and create lasting value for our clients and partners.</p>
             </div>
-            <div class="mv-img-wrap">
-                <img src="https://sapienceca.com/wp-content/uploads/2022/12/Untitled-design-45.png" alt="Mission Image">
-            </div>
+            
         </div>
     </section>
 
     <!-- Vision Section -->
     <section class="mv-section mv-vision">
         <div class="container mv-flex">
+            <div class="mv-img-wrap">
+                <img src="img/Vision.jpg" alt="Mission Image">
+            </div>
             <div class="mv-content">
                 <h2>Vision</h2>
                 <p>Our vision is to be a global leader in financial technology, recognized for our commitment to excellence, integrity, and customer success, while continuously innovating to meet the evolving needs of businesses worldwide.</p>
             </div>
-            <div class="mv-img-wrap">
-                <img src="https://sapienceca.com/wp-content/uploads/2022/12/Untitled-design-46.png" alt="Vision Image">
-            </div>
+            
             
         </div>
     </section>
@@ -47,7 +69,24 @@
         <div class="container">
             <h2 class="team-title">Meet Our Team</h2>
             <div class="team-grid">
-                <div class="team-card">
+
+                    <?php if (!empty($team_members)): ?>
+                    <?php foreach ($team_members as $member): ?>
+                        <div class="team-card">
+                            <div class="team-img-wrap large">
+                                <img src="admin/<?php echo htmlspecialchars($member['avatar']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>">
+                            </div>
+                            <h3><?php echo htmlspecialchars($member['name']); ?></h3>
+                            <?php if (!empty($member['linkedin_url'])): ?>
+                                <a class="linkedin-btn" href="<?php echo htmlspecialchars($member['linkedin_url']); ?>" target="_blank" rel="noopener">View LinkedIn</a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No team members found.</p>
+                <?php endif; ?>
+
+                <!-- <div class="team-card">
                     <div class="team-img-wrap large">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul Patel">
                     </div>
@@ -67,7 +106,7 @@
                     </div>
                     <h3>Arjun Mehta</h3>
                     <a class="linkedin-btn" href="https://www.linkedin.com/in/arjunmehta" target="_blank" rel="noopener">View LinkedIn</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

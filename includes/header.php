@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <a href="contact.php" class="nav-link">Contact Us</a>
-                    <a href="#login" class="login-btn">Book an appointment</a>
+                    <a href="https://calendly.com/sapient-kpo" target="_blank"  class="login-btn">Book an appointment</a>
                 </nav>
             </div>
         </div>

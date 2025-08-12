@@ -1,5 +1,28 @@
 
-<?php include 'includes/header.php'; ?>
+<?php 
+
+include 'includes/header.php'; 
+
+// 1. Include DB config and connect
+require_once 'admin/config.php';
+try {
+    $pdo = new PDO(
+        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+        DB_USER,
+        DB_PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
+    // 2. Fetch services (limit as needed)
+    $stmt = $pdo->query("SELECT title, description, image, icon_image FROM services ORDER BY created_at DESC LIMIT 8");
+    $services = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $services = [];
+}
+
+?>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -59,7 +82,24 @@
     <section class="features">
         <div class="container">
             <h2 class="section-title">One-Stop Solutions for <br > All Your Business Needs</h2>
-            <div class="features-grid">
+             <div class="features-grid">
+                <?php if (!empty($services)): ?>
+                    <?php foreach ($services as $service): ?>
+                        <div class="feature-card">
+                            <?php if (!empty($service['icon_image'])): ?>
+                                <img src="admin/<?php echo htmlspecialchars($service['icon_image']); ?>" alt="Service Image" class="product-image-admin">
+                            <?php else: ?>
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                            <?php endif; ?>
+                            <h3><?php echo htmlspecialchars($service['title']); ?></h3>
+                            <!-- <p><?php echo htmlspecialchars($service['description']); ?></p> -->
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No services found.</p>
+                <?php endif; ?>
+            </div>
+            <!-- <div class="features-grid">
                 <div class="feature-card">
                     <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
                     <h3>Audit & Assurance</h3>
@@ -100,7 +140,7 @@
                     <h3>International Liaison Services</h3>
                     <p>Our payments solution is designed to enable you to handle those busy days without a sweat.. Building and scaling your payments infrastructure has never been this quick and easy..</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
