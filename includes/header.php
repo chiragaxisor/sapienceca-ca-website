@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moveney - Soft Point of Sale | Payments Made Easy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Inter:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/common.css">
-</head>
-<body>
+<html lang="en-US" dir="ltr">
 
-<?php
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Sapienceca </title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="">
+    <link rel="icon" type="image/png" sizes="32x32" href="">
+    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+
+  </head>
+
+
+  <?php
 
 require_once 'admin/config.php';
 try {
@@ -31,36 +53,33 @@ try {
     $services = [];
 }
 ?>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.php" class="nav-link">
-                <div class="logo">
-                    <img src="img/logo.png" alt="Sapience Logo" class="logo-image" width="" height="50">
-                    <!-- <div class="logo-icon">S</div>
-                    <div class="logo-text">apience</div> -->
-                </div></a>
-                <nav class="nav">
-                    <a href="about.php" class="nav-link">About Us</a>
-                    <div class="dropdown">
-                        <a href="#" class="nav-link">Services</a>
-                        <div class="dropdown-content">
-                              <?php if (!empty($services)): ?>
-                                <?php foreach ($services as $service):
-                                        
-                                    ?>
-                                    <a href="service-details.php?id=<?php echo ($service['id']); ?>"><?php echo htmlspecialchars($service['title']); ?></a>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            <!-- <a href="#">All Services</a>
-                            <a href="#">Virtual CFO</a>
-                            <a href="#">System Setup</a> -->
-                        </div>
-                    </div>
-                    <a href="contact.php" class="nav-link">Contact Us</a>
-                    <a href="https://calendly.com/sapient-kpo" target="_blank"  class="login-btn">Book an appointment</a>
-                </nav>
-            </div>
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="index.html">
+            <!-- <div class="text-warning">Urgram</div>
+            <div class="text-1000">.io</div> -->
+            <img src="img/logo.png" alt="Sapience Logo" class="logo-image" height="50">
+          </a>
+          
+          <button  class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
+              <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Home</a></li>
+              <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#features">About Us</a></li>
+              <!-- <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#pricing">Pricing</a></li> -->
+              <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#testimonial">Services</a></li>
+              <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#faq">Contact Us</a></li>
+            </ul>
+            
+            <form class="ps-lg-5">
+              <a class="btn btn-lg btn-primary rounded-pill order-0" href="#contact" type="submit" style='background:#369E98;'>Book an appointment</a>
+            </form>
+          </div>
         </div>
-    </header>
+      </nav>

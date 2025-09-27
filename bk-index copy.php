@@ -1,0 +1,433 @@
+
+<?php 
+
+include 'includes/header.php'; 
+
+// 1. Include DB config and connect
+require_once 'admin/config.php';
+try {
+    $pdo = new PDO(
+        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+        DB_USER,
+        DB_PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
+    // 2. Fetch services (limit as needed)
+    $stmt = $pdo->query("SELECT id,title, description, image, icon_image FROM services ORDER BY created_at DESC LIMIT 8");
+    $services = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $services = [];
+}
+
+?>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Welcome to </h1>
+                    <h2>Sapience</h2>
+                    <p>Sapience is committed to supporting dynamic organizations, ensuring that all member firms share a common goal: delivering best-in-class solutions to clients worldwide. As approved auditors by the Ministry of Economy and Free Zones, with expertise in assisting clients with Federal Tax Authority (FTA) compliance, we strive to be a one-stop solution for all financial needs!</p>
+                    <!-- <p>Request a quote and see how our services can benefit your business!</p> -->
+                    <div class="hero-buttons">
+                        <a href="#get-started" class="btn-primary">Get started</a>
+                        <!-- <a href="#app-store" class="app-store-btn">
+                            <span>🍎</span>
+                            Download on the App Store
+                        </a>
+                        <a href="#google-play" class="app-store-btn">
+                            <span>🤖</span>
+                            GET IT ON Google Play
+                        </a> -->
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="https://c.ndtvimg.com/2025-02/l3b8jsmo_income-tax_625x300_14_February_25.jpg" alt="App Screenshot" style="max-width:100%; border-radius:24px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="journey">
+        <div class="container">
+            <h2 class="section-title">We Value...</h2>
+            <div class="journey-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Integrity</h3>
+                    <p>We believe in acting with integrity and getting work done.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Transparency</h3>
+                    <p>Sapience is committed to building transparency into the business.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Privacy</h3>
+                    <p>Protecting your organization's data and assets.</p>
+                </div>
+            </div>
+            <!-- <p class="disclaimer">* If you are registering through the website you will be prompted to download Moveney's Soft POS application on your mobile phone upon verification of your business details.</p> -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">One-Stop Solutions for <br > All Your Business Needs</h2>
+             <div class="features-grid">
+                <?php if (!empty($services)): ?>
+                    <?php foreach ($services as $service): ?>
+                        <a href="service-details.php?id=<?php echo ($service['id']); ?>" style="text-decoration: none; color: inherit;">
+                        <div class="feature-card">
+                            <?php if (!empty($service['icon_image'])): ?>
+                                <img src="admin/<?php echo htmlspecialchars($service['icon_image']); ?>" alt="Service Image" class="product-image-admin">
+                            <?php else: ?>
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                            <?php endif; ?>
+                            <h3><?php echo htmlspecialchars($service['title']); ?></h3>
+                            <!-- <p><?php echo htmlspecialchars($service['description']); ?></p> -->
+                        </div>
+                        </a>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No services found.</p>
+                <?php endif; ?>
+            </div>
+            <!-- <div class="features-grid">
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>Audit & Assurance</h3>
+                    <p>A payments solution designed to be merchant friendly... We have ensured a seamless design to ensure you find it easy navigating through the application. Taking payments has never been this simple.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>Accounting & Book Keeping</h3>
+                    <p>Our Soft POS solution enables you to take contactless payments through your mobile phone, create and manage unlimited number of payment terminals, Manage your inventory regardless of size and complexity and stay up to date with critical business performance indicators.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>Financial Statement Preparation</h3>
+                    <p>Our payments solution is designed to enable you to handle those busy days without a sweat.. Building and scaling your payments infrastructure has never been this quick and easy..</p>
+                </div>
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>Controller Services</h3>
+                    <p>Our payments solution is designed to enable you to handle those busy days without a sweat.. Building and scaling your payments infrastructure has never been this quick and easy..</p>
+                </div>
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>Virtual CFO Services</h3>
+                    <p>Our payments solution is designed to enable you to handle those busy days without a sweat.. Building and scaling your payments infrastructure has never been this quick and easy..</p>
+                </div>
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>Business Support Services</h3>
+                    <p>Our payments solution is designed to enable you to handle those busy days without a sweat.. Building and scaling your payments infrastructure has never been this quick and easy..</p>
+                </div>
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>Staffing Solutions</h3>
+                    <p>Our payments solution is designed to enable you to handle those busy days without a sweat.. Building and scaling your payments infrastructure has never been this quick and easy..</p>
+                </div>
+                <div class="feature-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" class="product-image">
+                    <h3>International Liaison Services</h3>
+                    <p>Our payments solution is designed to enable you to handle those busy days without a sweat.. Building and scaling your payments infrastructure has never been this quick and easy..</p>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Phone Features Section -->
+    <!-- <section class="phone-features">
+        <div class="container">
+            <h2 class="section-title">Payments Through Your Phone</h2>
+            <div class="phone-features-content">
+                <div class="phone-features-text">
+                    <div class="text-block">
+                        <h3>Be Part of The Green Revolution...</h3>
+                        <p>Get rid of unnecessary card readers, receipt printers. Moveney's Soft POS solution enables merchants to use their existing mobile phones to take contactless payments and reducing the need for additional infrastructure contributing towards a reduced carbon footprint and a greener future</p>
+                    </div>
+                    <div class="text-block">
+                        <h3>Contactless Payments Within Minutes</h3>
+                        <p>Moveney's Soft POS solution allows merchants to take payments through their existing mobile phones. Its easy and quick. Download the application through Appstore or Playstore, Go through the onboarding process and register your details......... start taking payments .... all within minutes!!!</p>
+                    </div>
+                </div>
+                <div class="phone-features-cards">
+                    <div class="feature-card-small">
+                        <div class="card-icon">📱</div>
+                        <h4>CONTACTLESS PAYMENTS</h4>
+                        <p>Leveraging the latest technological advances in Near-field communication, and regulatory approvals Soft POS is only going to grow in the years to come...</p>
+                    </div>
+                    <div class="feature-card-small">
+                        <div class="card-icon">📋</div>
+                        <h4>INVENTORY MANAGEMENT</h4>
+                        <p>Comprehensive inventory management that solves your inventory management challenges, regardless of the size of your business.</p>
+                    </div>
+                    <div class="feature-card-small">
+                        <div class="card-icon">⚡</div>
+                        <h4>ACCELERATED PAYMENT CHECKOUTS</h4>
+                        <p>We understand those busy days where time is critical, so we made taking payments quick and easy.</p>
+                    </div>
+                    <div class="feature-card-small">
+                        <div class="card-icon">💳</div>
+                        <h4>WORKS WITH ALL EMV LEVEL 1 DEVICES</h4>
+                        <p>Moveney's soft POS is compatible with all EMV Level 1 devices covering more than 95% of NFC enabled mobile phones since 2017.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Inventory Section -->
+    <section class="inventory">
+        <div class="container">
+            <div class="inventory-content">
+                <div class="inventory-visual">
+                    <img src="img/WhyChooseUs.jpeg" alt="Large Inventory Image" style="width:100%;border-radius:24px;display:block;">
+                    <!-- width:100%;max-width:400px;border-radius:24px;display:block;margin:0 auto 24px auto; -->
+                <!-- </div> -->
+                </div>
+                <div class="inventory-text">
+                    <h2>Why Choose Us</h2>
+
+                    <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;">
+                            <span style="font-size:1.8rem;">🌟</span>
+                        </div>
+                        <h4 style="margin:0 12px 0 0;color:#fff;">Expertise</h4>
+                    </div>
+                    <p style="margin:8px 0 0 0;color:#fff;">Our team of professionals has a deep understanding of accounting principles and a track record of delivering high-quality work.</p>
+                    
+                    <div style="display:flex;align-items:center;gap:16px;margin-top: 20px;">
+                        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;">
+                            <span style="font-size:1.8rem;">🌟</span>
+                        </div>
+                        <h4 style="margin:0 12px 0 0;color:#fff;">Customized solutions</h4>
+                    </div>
+                    <p style="margin:8px 0 0 0;color:#fff;">We work closely with our clients to understand their specific needs and goals, and tailor our services to meet those needs.</p>
+                    
+                    <div style="display:flex;align-items:center;gap:16px;margin-top: 20px;">
+                        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;">
+                            <span style="font-size:1.8rem;">🌟</span>
+                        </div>
+                        <h4 style="margin:0 12px 0 0;color:#fff;">Reliability</h4>
+                    </div>
+                    <p style="margin:8px 0 0 0;color:#fff;">We are dependable and always available to answer questions and provide support. We take pride in delivering accurate, timely results to our clients.</p>
+                    
+                    <!-- <p>Regardless of the size of your business, our application allows you to effortlessly create, upload, and manage your inventory. Our comprehensive inventory feature allows you to create, upload and manage all your inventory across one or multiple sites.</p>
+                    <p>Set alerts to keep you up to date with your available stock and stay ahead of all your supply requirements</p>
+                     -->
+                    <!-- <div class="inventory-forms">
+                        <div class="form-group">
+                            <h4>Import Product</h4>
+                            <div class="upload-area">
+                                <div class="upload-content">
+                                    <span class="upload-icon">📁</span>
+                                    <span class="upload-text">Add.csv or .xml file here</span>
+                                    <button class="browse-btn">Browse</button>
+                                </div>
+                            </div>
+                            <button class="add-btn">Add</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <h4>Add Category</h4>
+                            <input type="text" placeholder="Enter category Name" class="form-input">
+                            <button class="add-btn">Add</button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <h4>Add Option</h4>
+                            <input type="text" placeholder="Enter Option Name" class="form-input">
+                            <button class="add-btn">Add</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scale POS Section -->
+    <!-- <section class="scale-pos">
+        <div class="container">
+            <h2 class="section-title">Scale Your POS Terminals</h2>
+            <div class="scale-pos-content">
+                <div class="scale-pos-text">
+                    <h3>Manage your Terminals & Business Securely</h3>
+                    <p>Add unlimited number of POS terminals to meet the requirements of your business with no extra costs and within minutes. Our Soft POS application provides you full control to scale and manage your POS infrastructure securely.</p>
+                    
+                    <div class="business-management">
+                        <div class="business-header">
+                            <h4>Businesses</h4>
+                            <button class="add-business-btn">+</button>
+                        </div>
+                        <div class="business-list">
+                            <div class="business-item">
+                                <span>Business name 1</span>
+                                <div class="business-actions">
+                                    <button class="action-btn">✏️</button>
+                                    <button class="action-btn">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="business-item">
+                                <span>Business name 2</span>
+                                <div class="business-actions">
+                                    <button class="action-btn">✏️</button>
+                                    <button class="action-btn">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="business-item">
+                                <span>Business name 3</span>
+                                <div class="business-actions">
+                                    <button class="action-btn">✏️</button>
+                                    <button class="action-btn">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="business-item">
+                                <span>Business name 4</span>
+                                <div class="business-actions">
+                                    <button class="action-btn">⚠️</button>
+                                    <button class="action-btn">✏️</button>
+                                    <button class="action-btn">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activation-code">
+                        <h4>Activation Code</h4>
+                        <div class="code-input">
+                            <input type="text" value="279630" readonly class="code-display">
+                            <button class="copy-btn">📋</button>
+                        </div>
+                        <p>Please provide this code to the individual managing the terminal.</p>
+                        <button class="complete-btn">Completed</button>
+                    </div>
+                </div>
+                <div class="scale-pos-visual">
+                    <div class="phone-mockup-scale">
+                        <div class="phone-screen-scale">
+                            <div class="terminal-interface">
+                                <h3>Add new terminal</h3>
+                                <input type="text" placeholder="Terminal Name" class="terminal-input">
+                                <input type="text" placeholder="Phone Number" class="terminal-input">
+                                <select class="terminal-input">
+                                    <option>Terminal Type</option>
+                                </select>
+                                <div class="permissions">
+                                    <label><input type="checkbox"> Admin Permission</label>
+                                    <label><input type="checkbox"> Payments Only</label>
+                                    <label><input type="checkbox"> Inventory Management</label>
+                                    <label><input type="checkbox"> My Terminal</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-mockup-scale back">
+                        <div class="phone-screen-scale">
+                            <div class="terminal-list">
+                                <h3>My Terminals</h3>
+                                <div class="terminal-item">
+                                    <h4>Terminal 1</h4>
+                                    <p>+1 234 567 8900</p>
+                                    <p>user@example.com</p>
+                                </div>
+                                <div class="terminal-item">
+                                    <h4>Terminal 2</h4>
+                                    <p>+1 234 567 8901</p>
+                                    <p>user2@example.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Download Section -->
+    <!-- <section class="download-section">
+        <div class="container">
+            <div class="download-content">
+                <div class="qr-code">
+                    <div class="qr-placeholder">
+                        <div class="qr-grid">
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                            <div class="qr-cell"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-text">
+                    <h2>Download our Point of Sale solution now!</h2>
+                    <div class="download-buttons">
+                        <a href="#app-store" class="app-store-btn">
+                            <span>🍎</span>
+                            Download on the App Store
+                        </a>
+                        <a href="#google-play" class="app-store-btn">
+                            <span>🤖</span>
+                            GET IT ON Google Play
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <!-- Expertise Softwares Section -->
+    <section class="expertise-softwares-section">
+        <div class="container">
+            <h2 class="expertise-title">Softwares we have expertise on</h2>
+            <div class="expertise-carousel">
+                <div class="expertise-track">
+                    <img src="img/software/1-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/2-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/3-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/4-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/5-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/6-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/7-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/1-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/2-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/3-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/4-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/5-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/6-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <img src="img/software/7-150x150.png" alt="JavaScript" class="expertise-logo">
+                    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C#" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg" alt="C" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg" alt="R" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg" alt="Go" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg" alt="PHP" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/WordPress_blue_logo.svg" alt="WordPress" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Jupyter_logo.svg" alt="Jupyter" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/SQLite370.svg" alt="SQLite" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/SAP_logo.svg" alt="SAP" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Oracle_logo.svg" alt="Oracle" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Google-firebase-logo.svg" alt="Firebase" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Logo_Microsoft_Azure.svg" alt="Azure" class="expertise-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_de_Microsoft_Office.svg" alt="MS Office" class="expertise-logo"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <?php include 'includes/footer.php'; ?>
