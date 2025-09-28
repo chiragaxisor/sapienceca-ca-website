@@ -127,66 +127,25 @@ try {
     <section class="solution_component">
         <div class="solution_section">
             <h2>One-Stop Solutions for <br> All Your Business Needs</h2>
+            
             <div class="container">
                 <div class="services_section">
-                    <!-- International Liaison Services -->
-                    <div class="services_box fade-up">
-                        <div class="integrity_icon">
-                            <img src="./assets/img/integrity-icon.svg" alt="Integrity">
+                    <?php if (!empty($services)): ?>
+                    <?php foreach ($services as $service): ?>
+                        <a href="service-details.php?id=<?php echo $service['id']; ?>" class="text-decoration-none text-dark">
+                        <div class="services_box fade-up mt-5">
+                            <div class="integrity_icon">
+                                <img src="admin/<?php echo htmlspecialchars($service['icon_image']); ?>" alt="Integrity">
+                            </div>
+                            <div class="solution_detail">
+                                <h4><?php echo htmlspecialchars($service['title']); ?></h4>
+                            </div>
                         </div>
-                        <div class="solution_detail">
-                            <h4>International Liaison Services</h4>
-                        </div>
-                    </div>
-                    <!-- Staffing Solutions -->
-                    <div class="services_box fade-up">
-                        <div class="transperancy_icon">
-                            <img src="./assets/img/transperancy-icon.svg" alt="Transparency">
-                        </div>
-                        <div class="solution_detail">
-                            <h4>Staffing Solutions</h4>
-                        </div>
-                    </div>
-                    <!-- Business Support Services -->
-                    <div class="services_box fade-up">
-                        <div class="privacy_icon">
-                            <img src="./assets/img/privacy-icon.svg" alt="Privacy">
-                        </div>
-                        <div class="solution_detail">
-                            <h4>Business Support Services</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="services_section">
-                    <!-- Financial Statement Preparation -->
-                    <div class="services_box fade-up">
-                        <div class="integrity_icon">
-                            <img src="./assets/img/integrity-icon.svg" alt="Integrity">
-                        </div>
-                        <div class="solution_detail">
-                            <h4>Financial Statement Preparation</h4>
-                        </div>
-                    </div>
-                    <!-- Virtual CFO Services -->
-                    <div class="services_box fade-up">
-                        <div class="transperancy_icon">
-                            <img src="./assets/img/transperancy-icon.svg" alt="Transparency">
-                        </div>
-                        <div class="solution_detail">
-                            <h4>Virtual CFO Services</h4>
-                        </div>
-                    </div>
-                    <!-- Controller Services -->
-                    <div class="services_box fade-up">
-                        <div class="privacy_icon">
-                            <img src="./assets/img/privacy-icon.svg" alt="Privacy">
-                        </div>
-                        <div class="solution_detail">
-                            <h4>Controller Services</h4>
-                        </div>
-                    </div>
+                    </a>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No services found.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

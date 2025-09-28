@@ -21,27 +21,6 @@
                 Services
             </a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'projects.php' ? 'active' : ''; ?>"
-                href="projects.php">
-                <i class="fas fa-project-diagram"></i>
-                Projects
-            </a>
-        </li> -->
-        <!-- <li class="nav-item">
-            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'analytics.php' ? 'active' : ''; ?>"
-                href="analytics.php">
-                <i class="fas fa-chart-bar"></i>
-                Analytics
-            </a>
-        </li> -->
-        <!-- <li class="nav-item">
-            <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : ''; ?>"
-                href="settings.php">
-                <i class="fas fa-cog"></i>
-                Settings
-            </a>
-        </li> -->
         <li class="nav-item">
             <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : ''; ?>"
                 href="logout.php" onclick="return confirm('Are you sure you want to logout?')">

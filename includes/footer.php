@@ -78,7 +78,7 @@
         <div class="container d-flex justify-content-between">
             <p>@ 2025 sapience. All rights reserved</p>
 
-            <div class="footer_box">
+            <!-- <div class="footer_box">
                 <div class="footer_policy">
                     <a href="javascript:void(0)" title="Terms">Terms</a>
                     <a href="javascript:void(0)" title="Privacy">Privacy</a>
@@ -101,7 +101,7 @@
                         <img src="./assets/img/linkedin-icon.svg" alt="LinkedIn">
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 

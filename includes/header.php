@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 </head>
