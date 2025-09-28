@@ -43,38 +43,59 @@ try {
 }
 
 ?>
+<style>
+  .bg-custom {
+    background-color: #2f9d96 !important;
+  }
+  .service-img {
+    max-width: 100%;     /* container ni width cross na kare */
+    height: auto;        /* aspect ratio maintain */
+    max-height: 100%;   /* responsive fixed height */
+    object-fit: cover;   /* image crop thay to pan sundar lage */
+    border-radius: 8px;  /* optional: thodo round corner */
+  }
+</style>
 
-    <section class="service-detail-section">
-        <div class="container service-detail-container">
-            <div class="service-detail-image">
-            <?php if (!empty($service['image'])): ?>
-                <img src="admin/<?php echo htmlspecialchars($service['image']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" />
+
+<div class="page-title bg-custom  text-white py-4">
+  <div class="container d-lg-flex justify-content-between align-items-center">
+    <h3 class="mb-2 mb-lg-0"><?php echo htmlspecialchars($service['title']); ?></h3>
+    <nav class="breadcrumbs">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="index.php" class="text-white">Home</a></li>
+        <!-- <li class="breadcrumb-item active text-white" aria-current="page">Blog Details</li> -->
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section class="py-3 py-md-5" style="background: #f5f5f5;">
+  <div class="container">
+    <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+      <div class="col-12 col-lg-6 col-xl-5">
+        <?php if (!empty($service['image'])): ?>
+                <img class="service-img img-fluid" src="admin/<?php echo htmlspecialchars($service['image']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" />
             <?php else: ?>
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Service Image" />        
+                <img class="service-img img-fluid" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Service Image" />        
             <?php endif; ?>
-                <!-- <img src="https://sapienceca.com/wp-content/uploads/2023/02/Untitled-design-98-min.png" alt="Bookkeeping & Accounting" /> -->
-            </div>
-            <div class="service-detail-content">
-                
-                <h1> 
-                    <?php echo htmlspecialchars($service['title'] ?? 'Service Not Found'); ?>
-                     </h1>
-                <p class="service-detail-desc">     
-                    <?php echo $service['description'] ?? 'No description available.'; ?>
-                </p>
+      </div>
+      <div class="col-12 col-lg-6 col-xl-7">
+        <div class="row justify-content-xl-center">
+          <div class="col-12 col-xl-11">
+            <h2 class="mb-3"><?php echo htmlspecialchars($service['title'] ?? 'Service Not Found'); ?></h2>
+            
+             <?php echo $service['description'] ?? 'No description available.'; ?>
 
-                <!-- <p class="service-detail-desc">Comprehensive bookkeeping and accounting services to keep your business finances organized, compliant, and up-to-date. Our expert team ensures accurate record-keeping, timely reporting, and full compliance with regulatory standards, so you can focus on growing your business.</p>
-                <ul class="service-detail-list">
-                    <li>Day-to-day bookkeeping</li>
-                    <li>Financial statement preparation</li>
-                    <li>Bank reconciliation</li>
-                    <li>Accounts payable & receivable management</li>
-                    <li>Tax-ready financials</li>
-                </ul> -->
-                <a href="https://calendly.com/sapient-kpo" style="margin-top:20px" target="_blank" class="btn-primary">Enquire Now</a>
-            </div>
+            <div class="book_appointment_btn mt-5">
+                    <a href="https://calendly.com/sapient-kpo" title="Book an appointment" target="_blank">Enquire Now
+                        <img src="./assets/img/arrow-right.svg" alt="">
+                    </a>
+                </div>
+          </div>
         </div>
-    </section>
-    
+      </div>
+    </div>
+  </div>
+</section>
 
-    <?php include 'includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

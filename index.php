@@ -24,202 +24,274 @@ try {
 
 ?>  
 
-        <section class="py-0 mt-5" id="home" >
-        <div class="bg-holder" style="background-image:url(assets/img/illustrations/hero-bg.png);background-position:bottom;background-size:cover;">
-        </div>
-        <!--/.bg-holder-->
+<!-- Hero Section -->
+    <section class="hero_component">
+        <!-- Full-width background image -->
+        <img src="./assets/img/hero-bg.svg" alt="Hero Background" class="hero-bg">
 
-        <div class="container position-relative" style="margin-top: 100px;">
-          <div class="row align-items-center py-8">
-            <div class="col-md-5 col-lg-6 order-md-1 text-center text-md-end"><img class="img-fluid" src="https://c.ndtvimg.com/2025-02/l3b8jsmo_income-tax_625x300_14_February_25.jpg" width="850" style="border-radius:20px" alt="" /></div>
-            <div class="col-md-7 col-lg-6 text-center text-md-start">
-              <h1 class="mb-4 display-3 fw-bold lh-sm">Welcome to <br class="d-block d-lg-none d-xl-block" />Sapience</h1>
-              <p class="mt-3 mb-4 fs-1">Sapience is committed to supporting dynamic organizations, ensuring that all member firms share a common goal: delivering best-in-class solutions to clients worldwide. As approved auditors by the Ministry of Economy and Free Zones, with expertise in assisting clients with Federal Tax Authority (FTA) compliance, we strive to be a one-stop solution for all financial needs!</p>
-              <!-- <a class="btn btn-lg btn-primary rounded-pill hover-top" href="#" role="button">Try for free</a><a class="btn btn-link ps-md-4" href="#" role="button"> Watch demo video</a> -->
+        <div class="hero_section d-flex flex-column align-items-center">
+            <div class="hero_title d-flex flex-column gap-3 align-items-center">
+                <h1>Welcome to Sapience</h1>
+                <p>Sapience is committed to supporting dynamic organizations, ensuring that all member firms share a
+                    common
+                    goal: delivering best-in-class solutions to clients worldwide.</p>
+
+                <div class="book_appointment_btn">
+                    <a href="https://calendly.com/sapient-kpo" target="_blank"  title="Book an appointment">Book an appointment
+                        <img src="./assets/img/arrow-right.svg" alt="">
+                    </a>
+                </div>
             </div>
-          </div>
+
+            <img class="hero_img fade-up" src="./assets/img/hero-img.svg" alt="">
         </div>
-      </section>
+    </section>
 
-
-            <!-- ============================================-->
-      <!-- <section> begin ============================-->
-      <section class="py-6">
-
+    <!-- services -->
+    <section class="services_component">
         <div class="container">
-          <div class="row justify-content-center mb-6">
-            <div class="col-lg-6 text-center mx-auto mb-3 mb-md-2 mt-4">
-              <h6 class="fw-bold fs-4 display-3 lh-sm">We Value...</h6>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 mb-6">
-              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/app.png" width="90" alt="" />
-                <h5 class="fw-bold">Integrity</h5>
-                <p class="mb-md-0">We believe in acting with integrity and getting work done.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-6">
-              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/time-award.png" width="90" alt="" />
-                <h5 class="fw-bold">Transparency</h5>
-                <p class="mb-md-0">Sapience is committed to building transparency into the business.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-6">
-              <div class="text-center px-lg-3"><img class="img-fluid mb-3" src="assets/img/illustrations/cloud.png" width="90" alt="" />
-                <h5 class="fw-bold">Privacy</h5>
-                <p class="mb-md-0">Protecting your organization's data and assets.</p>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        <!-- end of .container-->
-
-      </section>
-      <!-- <section> close ============================-->
-      <!-- ============================================-->
-
-
-            <!-- ============================================-->
-      <!-- <section> begin ============================-->
-      <section class="py-6">
-
-        <div class="container">
-          <div class="container">
-            <div class="row align-items-center">
-              <!-- <div class="col-md-5 order-md-1 text-center text-md-start"><img class="img-fluid mb-4" src="assets/img/illustrations/ultimate-feature.png" alt="" /></div> -->
-              <div class="col-md-12 text-center text-md-start">
-                
-        
-                <div class="row justify-content-center mb-6">
-                    <div class="col-lg-6 text-center mx-auto mb-3 mb-md-2">
-                    <h6 class="fw-bold fs-4 display-3 lh-sm">One-Stop Solutions for<br />All Your Business Needs</h6>
+            <div class="services_section">
+                <!-- Integrity -->
+                <div class="services_box fade-up">
+                    <div class="integrity_icon">
+                        <img src="./assets/img/integrity-icon.svg" alt="Integrity">
+                    </div>
+                    <div class="service_detail">
+                        <h4>Integrity</h4>
+                        <p>We believe in acting with integrity and getting work done.</p>
                     </div>
                 </div>
+                <!-- Transparency -->
+                <div class="services_box fade-up">
+                    <div class="transperancy_icon">
+                        <img src="./assets/img/transperancy-icon.svg" alt="Transparency">
+                    </div>
+                    <div class="service_detail">
+                        <h4>Transparency</h4>
+                        <p>Sapience is committed to building transparency into the business.</p>
+                    </div>
+                </div>
+                <!-- Privacy -->
+                <div class="services_box fade-up">
+                    <div class="privacy_icon">
+                        <img src="./assets/img/privacy-icon.svg" alt="Privacy">
+                    </div>
+                    <div class="service_detail">
+                        <h4>Privacy</h4>
+                        <p>Protecting your organization's data and assets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Introduction -->
+    <section class="introduction_component">
+        <div class="introduction_section d-flex">
+            <div class="col-md-6 intro_img fade-up">
+                <img src="./assets/img/intro-img-1.svg" alt="Company Intro">
+            </div>
+            <div class="col-md-6 intro_detail d-flex gap-5 flex-column fade-up">
+                <h2>Sapience</h2>
+                <p>Sapience is committed to supporting dynamic organizations, ensuring that all member firms share a
+                    common goal: delivering best-in-class solutions to clients worldwide. As approved auditors by the
+                    Ministry of Economy and Free Zones, with expertise in assisting clients with Federal Tax Authority
+                    (FTA) compliance, we strive to be a one-stop solution for all financial needs.
+                </p>
+                <div class="book_appointment_btn butn_shadow">
+                    <a href="javascript:void()" title="Book an appointment">Book an appointment</a>
+                </div>
+            </div>
+        </div>
+        <div class="introduction_images d-flex">
+            <div class="col-md-6 d-flex intro_img_box fade-up">
+                <div class="col-md-10 intro_img_box">
+                    <img src="./assets/img/intro-img-2.svg" alt="">
+                </div>
+                <div class="col-md-2">
+                    <img src="./assets/img/intro-img-3.svg" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 d-flex">
+                <div class="col-md-10 intro_img_box fade-up">
+                    <img src="./assets/img/intro-img-4.svg" alt="">
+                </div>
+                <div class="col-md-2">
+                    <img src="./assets/img/intro-img-5.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="row">
-
-                <?php if (!empty($services)): ?>
-                    <?php foreach ($services as $service): ?>
-
-
-                  <div class="col-md-4">
-                    <div class="mb-4">
-                        <?php if (!empty($service['icon_image'])): ?>
-                      <div class="py-4"><img class="img-fluid" src="admin/<?php echo htmlspecialchars($service['icon_image']); ?>" width="90" alt="" /></div>
-                      <?php else: ?>
-                        <div class="py-4">
-                                <img class="img-fluid" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo=" alt="Product" width="90" alt="">
+    <!-- solution -->
+    <section class="solution_component">
+        <div class="solution_section">
+            <h2>One-Stop Solutions for <br> All Your Business Needs</h2>
+            <div class="container">
+                <div class="services_section">
+                    <!-- International Liaison Services -->
+                    <div class="services_box fade-up">
+                        <div class="integrity_icon">
+                            <img src="./assets/img/integrity-icon.svg" alt="Integrity">
                         </div>
-                            <?php endif; ?>
-                      <h5 class="fw-bold text-undefined"><?php echo htmlspecialchars($service['title']); ?></h5>
-                      <!-- <p class="mt-2 mb-0">Get your blood tests delivered at home collect a sample from the news your blood tests.</p> -->
+                        <div class="solution_detail">
+                            <h4>International Liaison Services</h4>
+                        </div>
                     </div>
-                  </div>
-
-                  <?php endforeach; ?>
-                <?php else: ?>
-                    <p>No services found.</p>
-                <?php endif; ?>
-
-                <!-- </div><a class="btn btn-lg btn-primary rounded-pill hover-top" href="#" role="button">See all</a> -->
-              </div>
+                    <!-- Staffing Solutions -->
+                    <div class="services_box fade-up">
+                        <div class="transperancy_icon">
+                            <img src="./assets/img/transperancy-icon.svg" alt="Transparency">
+                        </div>
+                        <div class="solution_detail">
+                            <h4>Staffing Solutions</h4>
+                        </div>
+                    </div>
+                    <!-- Business Support Services -->
+                    <div class="services_box fade-up">
+                        <div class="privacy_icon">
+                            <img src="./assets/img/privacy-icon.svg" alt="Privacy">
+                        </div>
+                        <div class="solution_detail">
+                            <h4>Business Support Services</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- end of .container-->
-
-      </section>
-      <!-- <section> close ============================-->
-      <!-- ============================================-->
-
-
-      <section class="py-5" id="features">
-        <div class="container-lg">
-          <div class="row align-items-center">
-            <div class="col-md-5 col-lg-6 order-md-0 text-center text-md-start"><img class="img-fluid" src="img/WhyChooseUs.jpeg" width="550" alt=""  style="width:100%;border-radius:24px;display:block;" /></div>
-            <div class="col-md-7 col-lg-6 px-sm-5 px-md-0">
-              <h6 class="fw-bold fs-4 display-3 lh-sm">Why Choose Us</h6>
-              <p class="my-4"></p>
-              <div class="d-flex align-items-center mb-5">
-                <div><img class="img-fluid" src="assets/img/illustrations/fast-performance.png" width="90" alt="" /></div>
-                <div class="px-4">
-                  <h5 class="fw-bold text-danger">Expertise</h5>
-                  <p>Our team of professionals has a deep understanding of accounting principles and a track record of delivering high-quality work.</p>
+            <div class="container">
+                <div class="services_section">
+                    <!-- Financial Statement Preparation -->
+                    <div class="services_box fade-up">
+                        <div class="integrity_icon">
+                            <img src="./assets/img/integrity-icon.svg" alt="Integrity">
+                        </div>
+                        <div class="solution_detail">
+                            <h4>Financial Statement Preparation</h4>
+                        </div>
+                    </div>
+                    <!-- Virtual CFO Services -->
+                    <div class="services_box fade-up">
+                        <div class="transperancy_icon">
+                            <img src="./assets/img/transperancy-icon.svg" alt="Transparency">
+                        </div>
+                        <div class="solution_detail">
+                            <h4>Virtual CFO Services</h4>
+                        </div>
+                    </div>
+                    <!-- Controller Services -->
+                    <div class="services_box fade-up">
+                        <div class="privacy_icon">
+                            <img src="./assets/img/privacy-icon.svg" alt="Privacy">
+                        </div>
+                        <div class="solution_detail">
+                            <h4>Controller Services</h4>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="d-flex align-items-center mb-5">
-                <div><img class="img-fluid" src="assets/img/illustrations/prototype.png" width="90" alt="" /></div>
-                <div class="px-4">
-                  <h5 class="fw-bold text-primary">Customized solutions</h5>
-                  <p>Get your blood tests delivered at <br class="d-none d-xl-block"> We work closely with our clients to understand their specific needs and goals, and tailor our services to meet those needs.</p>
-                </div>
-              </div>
-              <div class="d-flex align-items-center mb-5">
-                <div><img class="img-fluid" src="assets/img/illustrations/vector.png" width="90" alt="" /></div>
-                <div class="px-4">
-                  <h5 class="fw-bold text-success">Reliability</h5>
-                  <p>We are dependable and always available to answer questions and provide support. We take pride in delivering accurate, timely results to our clients.</p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-           
-      
-      <section class="py-7">
-
+    <!-- Why choose us -->
+    <section class="why_choose_component">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-6 text-center mx-auto mb-3 mb-md-5 mt-4">
-              <h6 class="fw-bold fs-4 display-3 lh-sm">Softwares we have <br>expertise on</h6>
-              <p class="mb-0"></p>
+            <h2>Why Choose Us</h2>
+            <div class="why_choose_box align-items-center d-flex">
+                <div class="col-md-6 why_choose_sec fade-up">
+                    <img src="./assets/img/why-choose-us.png" alt="Choose us">
+                </div>
+                <div class="col-md-6 d-flex flex-column gap-4 why_choose_data">
+                    <div class="expertise_box fade-up">
+                        <h4>Expertise</h4>
+                        <p>Our team of professionals has a deep understanding of accounting principles and a track
+                            record of delivering high-quality work.</p>
+                    </div>
+                    <div class="expertise_box fade-up">
+                        <h4>Customized solutions</h4>
+                        <p>We work closely with our clients to understand their specific needs and goals, and tailor our
+                            services to meet those needs.</p>
+                    </div>
+                    <div class="expertise_box fade-up">
+                        <h4>Reliability</h4>
+                        <p>We are dependable and always available to answer questions and provide support. We take pride
+                            in delivering accurate, timely results to our clients</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="row align-items-center justify-content-center justify-content-lg-around">
-        
-            <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="img/software/1-150x150.png" alt="JavaScript" class="expertise-logo"></div>
-                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="img/software/2-150x150.png" alt="JavaScript" class="expertise-logo"></div>
-                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="img/software/3-150x150.png" alt="JavaScript" class="expertise-logo"></div>
-                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="img/software/4-150x150.png" alt="JavaScript" class="expertise-logo"></div>
-                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="img/software/5-150x150.png" alt="JavaScript" class="expertise-logo"></div>
-                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="img/software/6-150x150.png" alt="JavaScript" class="expertise-logo"></div>
-                    <!-- <div class="col-6 col-sm-4 col-md-4 col-lg-2 px-md-0 mb-5 mb-lg-0 text-center"><img src="img/software/7-150x150.png" alt="JavaScript" class="expertise-logo"></div> -->
-          </div>
         </div>
-        <!-- end of .container-->
-      </section>
+    </section>
 
+    <!-- About us -->
+    <section class="about_component">
+        <div class="container d-flex">
+            <div class="col-md-6 about_desc d-flex flex-column gap-5">
+                <h2>About Us</h2>
+                <div class="about_content d-flex justify-content-between gap-3 position-relative fade-up">
+                    <p>Sapience was formed with the vision of becoming a global advisory company. Over time, the company
+                        has grown and
+                        developed a team of skilled professionals who utilize online technology to help small and
+                        medium-sized businesses scale
+                        up by managing their bookkeeping and accounting needs. In addition to these core services,
+                        Sapience also offers virtual
+                        CFO, system setup and migration services to help businesses streamline their financial
+                        operations and achieve their
+                        goals.
+                    </p>
+                    <img src="./assets/img/about-1.svg" alt="">
+                </div>
+                <div class="about_imgs d-flex justify-content-between align-items-end fade-up">
+                    <img src="./assets/img/about-2.svg" alt="">
+                    <img src="./assets/img/about-3.svg" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 about_main_img fade-up">
+                <img src="./assets/img/about-4.svg" alt="">
+            </div>
+        </div>
+    </section>
 
-      <style>
-        
-  .marquee {
-    overflow: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
-  }
+    <!-- softwares -->
+    <section class="software_component">
+        <div class="software_title">
+            <h2>Softwares we have expertise on</h2>
+        </div>
+        <div class="software_slider">
+            <div class="card">
+                <div class="logos-slider">
+                    <div class="logos-slider-container">
+                        <img src="./assets/img/software-1.svg" />
+                        <img src="./assets/img/software-2.svg" />
+                        <img src="./assets/img/software-3.svg" />
+                        <img src="./assets/img/software-4.svg" />
+                        <img src="./assets/img/software-5.svg" />
+                        <img src="./assets/img/software-6.svg" />
+                        <img src="./assets/img/software-7.svg" />
+                    </div>
 
-  .marquee-content {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee 20s linear infinite;
-  }
+                    <div class="logos-slider-container">
+                        <img src="./assets/img/software-1.svg" />
+                        <img src="./assets/img/software-2.svg" />
+                        <img src="./assets/img/software-3.svg" />
+                        <img src="./assets/img/software-4.svg" />
+                        <img src="./assets/img/software-5.svg" />
+                        <img src="./assets/img/software-6.svg" />
+                        <img src="./assets/img/software-7.svg" />
+                    </div>
+                </div>
+            </div>
 
-  .marquee-content img {
-    margin: 0 30px; /* gap between logos */
-    height: 80px; /* adjust size */
-  }
+        </div>
+    </section>
 
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  }
-
-        </style>
-
-
+  
     <?php include 'includes/footer.php'; ?>
+        <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
