@@ -15,8 +15,8 @@ $success = '';
 
 // Handle login form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-     
-
+        
+    
     // Verify CSRF token
     if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
         $error = 'Invalid request. Please try again.';
@@ -62,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                 }
             } catch (Exception $e) {
-              
                 error_log("Login error: " . $e->getMessage());
-                $error = 'An error occurred. Please try again later.';
+                // For debugging - remove in production
+                $error = 'Database error: ' . $e->getMessage();
             }
         }
     }
@@ -122,17 +122,8 @@ function resetLoginAttempts($ip) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Login to SapienceCA - Your AI-powered business solution">
-    <meta name="robots" content="noindex, nofollow">
-    <title>SapienceCA - Login</title>
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
-    
-    <!-- Stylesheets -->
+    <title>SapienceCA - Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <style>
         :root {
@@ -307,171 +298,55 @@ function resetLoginAttempts($ip) {
                 <div class="card login-card">
                     <div class="card-body p-4">
                         <div class="login-header">
-                            <h1><i class="fas fa-brain text-primary"></i> SapienceCA</h1>
-                            <p>Welcome back! Please login to your account.</p>
+                            <h1>🔐 SapienceCA</h1>
+                            <p>Admin Login</p>
                         </div>
                         
                         <?php if ($error): ?>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="fas fa-exclamation-triangle me-2"></i> <?php echo htmlspecialchars($error); ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <div class="alert alert-danger">
+                                <?php echo htmlspecialchars($error); ?>
                             </div>
                         <?php endif; ?>
                         
                         <?php if ($success): ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="fas fa-check-circle me-2"></i> <?php echo htmlspecialchars($success); ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <div class="alert alert-success">
+                                <?php echo htmlspecialchars($success); ?>
                             </div>
                         <?php endif; ?>
                         
-                        <form method="POST" action="" id="loginForm" novalidate>
+                        <form method="POST" action="">
                             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                             
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email address</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    <input type="email" class="form-control" id="email" name="email" 
-                                           value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" 
-                                           required autocomplete="email">
-                                </div>
-                                <div class="invalid-feedback" id="emailError"></div>
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" 
+                                       required>
                             </div>
                             
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                    <input type="password" class="form-control" id="password" name="password" 
-                                           required autocomplete="current-password">
-                                    <button type="button" class="btn btn-outline-secondary" id="togglePassword" 
-                                            style="border-left: none; border-radius: 0 10px 10px 0;">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="invalid-feedback" id="passwordError"></div>
+                                <input type="password" class="form-control" id="password" name="password" 
+                                       required>
                             </div>
                             
-                            <!-- <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                                <label class="form-check-label" for="remember">
-                                    Remember me
-                                </label>
-                            </div> -->
-                            
-                            <button type="submit" class="btn btn-primary btn-login w-100" id="loginBtn">
-                                <i class="fas fa-sign-in-alt me-2"></i> Login
+                            <button type="submit" class="btn btn-primary btn-login w-100">
+                                Login
                             </button>
                         </form>
                         
-                        
+                        <div class="text-center mt-3">
+                            <small class="text-muted">
+                                Default: admin@sapienceca.com / admin123
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Simple Bootstrap JS for alerts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('loginForm');
-            const loginBtn = document.getElementById('loginBtn');
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('password');
-            
-            // Toggle password visibility
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                this.querySelector('i').classList.toggle('fa-eye');
-                this.querySelector('i').classList.toggle('fa-eye-slash');
-            });
-            
-            // Form validation
-            form.addEventListener('submit', function(e) {
-                if (!form.checkValidity()) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                } else {
-                    // Show loading state
-                    loginBtn.classList.add('btn-loading');
-                    loginBtn.disabled = true;
-                }
-                
-                form.classList.add('was-validated');
-            });
-            
-            // Real-time validation
-            const emailInput = document.getElementById('email');
-            // const passwordInput = document.getElementById('password');
-            
-            emailInput.addEventListener('input', function() {
-                validateEmail(this);
-            });
-            
-            passwordInput.addEventListener('input', function() {
-                validatePassword(this);
-            });
-            
-            function validateEmail(input) {
-                const email = input.value.trim();
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                
-                if (email === '') {
-                    showError(input, 'Email is required');
-                } else if (!emailRegex.test(email)) {
-                    showError(input, 'Please enter a valid email address');
-                } else {
-                    showSuccess(input);
-                }
-            }
-            
-            function validatePassword(input) {
-                const password = input.value;
-                
-                if (password === '') {
-                    showError(input, 'Password is required');
-                } else if (password.length < 6) {
-                    showError(input, 'Password must be at least 6 characters');
-                } else {
-                    showSuccess(input);
-                }
-            }
-            
-            function showError(input, message) {
-                input.classList.remove('is-valid');
-                input.classList.add('is-invalid');
-                
-                const errorElement = document.getElementById(input.id + 'Error');
-                if (errorElement) {
-                    errorElement.textContent = message;
-                }
-            }
-            
-            function showSuccess(input) {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
-                
-                const errorElement = document.getElementById(input.id + 'Error');
-                if (errorElement) {
-                    errorElement.textContent = '';
-                }
-            }
-            
-            // Auto-focus email field
-            emailInput.focus();
-            
-            // Handle Enter key
-            form.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    form.dispatchEvent(new Event('submit'));
-                }
-            });
-        });
-    </script>
 </body>
 </html>

@@ -307,7 +307,7 @@ if (isset($_GET['success'])) {
 
 // Fetch services with pagination
 try {
-    $stmt = $pdo->prepare("SELECT * FROM services WHERE user_id = ? ORDER BY title LIMIT ? OFFSET ?");
+    $stmt = $pdo->prepare("SELECT * FROM services WHERE user_id = ? ORDER BY id ASC LIMIT ? OFFSET ?");
     $stmt->bindValue(1, $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->bindValue(2, $itemsPerPage, PDO::PARAM_INT);
     $stmt->bindValue(3, $offset, PDO::PARAM_INT);

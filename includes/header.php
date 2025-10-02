@@ -12,68 +12,6 @@
     <script src="assets/js/bootstrap.min.js"></script>
 </head>
 
-<style>
-.header_menu {
-    display: flex;
-    gap: 20px;
-    position: relative;
-    font-family: Arial, sans-serif;
-}
-
-.header_menu a {
-    text-decoration: none;
-    /* padding: 10px 15px; */
-    color: #333;
-    font-weight: 500;
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    min-width: 220px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-    z-index: 999;
-    padding: 10px;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 10px 12px;
-    margin: 4px 0;
-    color: #333;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    background: #fafafa;
-    border: 1px solid #eee;
-}
-
-.dropdown-content a:hover {
-    background: #f5f5f5;
-    border-color: #ccc;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Optional: arrow indicator for Service */
-.dropdown > a::after {
-    /* content: " ▾";
-    font-size: 12px; */
-}
-
-</style>
-
-
 <?php
 require_once 'admin/config.php';
 try {
@@ -87,7 +25,7 @@ try {
         ]
     );
     // 2. Fetch services (limit as needed)
-    $stmt = $pdo->query("SELECT id, title, description, image, icon_image FROM services ORDER BY created_at DESC LIMIT 8");
+    $stmt = $pdo->query("SELECT id, title, description, image, icon_image FROM services ORDER BY id ASC LIMIT 8");
     $services = $stmt->fetchAll();
 } catch (PDOException $e) {
     $services = [];
@@ -97,13 +35,22 @@ try {
 
     <section class="header_component">
         <div class="container d-flex justify-content-between align-items-center">
-            <a href="/" class="logo_box" title="Sapience">
+            <a href="index.php" class="logo_box" title="Sapience">
                 <img src="./assets/img/logo.svg" alt="Logo">
             </a>
 
             <!-- Desktop Menu -->
             <div class="header_menu d-flex">
-                <a href="about.php" title="About Us">About Us</a>
+                <a href="index.php" title="Home">Home</a>
+                <div class="dropdown">
+                <a href="about.php" title="About Us">About Us ▾</a>
+                <div class="dropdown-content">
+                    <a href="#">Who we are</a>
+                    <a href="about.php#MeetOurTeam">Meet Choose Us</a>
+                    <a href="#">Careers</a>
+                </div>
+                </div>
+
                 <!-- <a href="javascript:void()" title="Service">Service</a> -->
                     <div class="dropdown">
                         <a href="javascript:void()" title="Service">Service ▾</a>
@@ -116,18 +63,15 @@ try {
                                 </a>
                             <?php endforeach; ?>
                           <?php endif; ?>
-
-                            <a href="javascript:void()">Web Development</a>
-                            <a href="javascript:void()">Mobile App</a>
-                            <a href="javascript:void()">SEO</a>
                         </div>
                     </div>
 
+                <a href="contact.php" title="Contact Us">Careers</a>
                 <a href="contact.php" title="Contact Us">Contact Us</a>
             </div>
 
             <div class="book_appointment_btn d-none d-lg-block">
-                <a href="https://calendly.com/sapient-kpo" target="_blank"  title="Book an appointment">Book an appointment</a>
+                <a href="https://calendly.com/sapienceca/30min" target="_blank"  title="Schedule a Free Consultation">Schedule a Free Consultation</a>
             </div>
 
             <!-- Hamburger Icon (Mobile) -->
@@ -150,7 +94,7 @@ try {
                 <a href="about.php">About Us</a>
                 <a href="javascript:void()">Service</a>
                 <a href="contact.php">Contact Us</a>
-                <a href="https://calendly.com/sapient-kpo" target="_blank" class="book_btn">Book an appointment</a>
+                <a href="https://calendly.com/sapienceca/30min" target="_blank" class="book_btn">Schedule a Free Consultation</a>
             </div>
         </div>
     </section>

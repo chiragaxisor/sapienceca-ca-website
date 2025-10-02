@@ -18,7 +18,13 @@ a {text-decoration: none;color: var(--text);}
 /* .header_component .container{display: flex;justify-content: space-between;align-items: center;} */
 .header_component{padding: 24px 0;}
 .header_menu{gap: 36px;}
-.header_menu a{font-weight: 500;font-size: 16px;line-height: 24px;letter-spacing: 0.5px;color: var(--text);}
+.header_menu a{font-weight: 500;font-size: 18px;line-height: 24px;letter-spacing: 0.5px;color: var(--text);}
+.header_menu a:hover {
+  color: var(--primary);   /* hover color */
+  text-decoration: none; /* underline on hover */
+  font-weight:bold;
+  transform: translateY(-2px); /* thodu upar uthse */
+}
 .logo_box{width: fit-content;}
 .logo_box img{height: 56px;width: auto;}
 .book_appointment_btn{opacity: 1;border-radius: 50px;border-width: 2px;padding: 8px 24px;background: rgba(47, 157, 150, 1);border: 2px solid rgba(47, 157, 150, 1);width: fit-content;overflow: hidden;transition: transform 0.3s ease, box-shadow 0.3s ease;}
@@ -38,7 +44,7 @@ a {text-decoration: none;color: var(--text);}
 .footer_copyright .container{padding: 24px 0;}
 /* services_section */
 .services_component{padding: 80px 0;}
-.services_section{display: grid;grid-template-columns: 1fr 1fr 1fr;align-items: start;}
+.services_section{display: grid;grid-template-columns: 1fr 1fr 1fr;align-items: start; }
 .services_box, .service_detail{display: flex;flex-direction: column;justify-content: center;align-items: center;gap: 10px;text-align: center;}
 .integrity_icon {border-radius: 100px;padding: 16px;display: flex;align-items: center;background: rgba(207, 250, 254, 1);}
 .integrity_icon img{height: 40px;width: 40px;}
@@ -47,7 +53,7 @@ a {text-decoration: none;color: var(--text);}
 .privacy_icon {border-radius: 100px;padding: 16px;display: flex;align-items: center;background: rgba(157, 168, 217, 1);}
 .privacy_icon img{height: 40px;width: 40px;}
 .service_detail h4{font-weight: 700;font-size: 24px;line-height: 110%;text-align: center;color: var(--text);}
-.service_detail p{font-size: 16px;line-height: 140%;text-align: center;color: var(--text);}
+.service_detail p{font-size: 20px;line-height: 140%;text-align: center;color: var(--text); margin: 25px;}
 /* intro section */
 .introduction_component{display: flex;flex-direction: column;gap: 10px;}
 .introduction_component .introduction_section .intro_img {padding-right: 10px;}
@@ -138,7 +144,7 @@ a {text-decoration: none;color: var(--text);}
     .book_appointment_btn {padding: 12px 34px;}
     .introduction_images img {height: 60px;}
     .introduction_component .introduction_section .intro_detail h2 {font-size: 36px;}
-    .services_section{display: grid;grid-template-columns: 1fr 1fr 1fr;gap: 40px;}
+    .services_section{display: grid;grid-template-columns: 1fr 1fr 1fr 1fr;gap: 40px;}
     .solution_section h2 {font-size: 26px;line-height: 140%;}
     .solution_section {gap: 40px;}
     .why_choose_box{flex-direction: column;gap: 24px;}
@@ -178,3 +184,116 @@ a {text-decoration: none;color: var(--text);}
 @media (max-width:600px){
     .services_section {grid-template-columns: 1fr;}
 }
+
+
+.header_menu {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+.header_menu a {
+    text-decoration: none;
+    /* padding: 10px 15px; */
+    color: #333;
+    font-weight: 500;
+}
+
+.dropdown {
+    position: relative;
+    
+}
+
+.dropdown-content {
+    /* margin-top: px; */
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 300px; /* thodu vadhare width */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    z-index: 999;
+    padding: 15px;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 12px;
+    margin: 4px 0;
+    color: #333;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    background: #fafafa;
+    border: 1px solid #eee;
+}
+
+.dropdown-content a:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+ 
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    grid-template-columns: repeat(4, 1fr); 
+    /* 2 columns */
+    gap: 12px; 
+    /* column & row gap */
+}
+
+/* Optional: arrow indicator for Service */
+.dropdown > a::after {
+    /* content: " ▾";
+    font-size: 12px; */
+}
+
+
+
+
+.hero-media {
+  width: 100%;
+  max-width: 1200px; /* adjust to design */
+  margin: 0 auto;
+  /* center if needed */
+}
+
+/* Modern browsers: maintain aspect ratio */
+.hero-media__video {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* keep aspect ratio; change to 16 / 9 or 4 / 3 as needed */
+  aspect-ratio: 16 / 9;
+  object-fit: cover; /* cover like a background, or use contain */
+  border-radius: 12px;
+}
+
+/* Fallback for browsers without aspect-ratio: use padding-top trick */
+@supports not (aspect-ratio: 16/9) {
+  .hero-media {
+    position: relative;
+    height: 0;
+    padding-top: 56.25%; /* 16:9 (9/16=0.5625) */
+    overflow: hidden;
+  }
+  .hero-media__video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Small-screen adjustments */
+@media (max-width: 480px) {
+  .hero-media__video {
+    aspect-ratio: 4 / 3; /* optionally change ratio on small screens */
+  }
+}
+
+

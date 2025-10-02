@@ -16,7 +16,7 @@ try {
         ]
     );
     // 2. Fetch services (limit as needed)
-    $stmt = $pdo->query("SELECT id,title, description, image, icon_image FROM services ORDER BY created_at DESC LIMIT 8");
+    $stmt = $pdo->query("SELECT id,title, description, image, icon_image FROM services ORDER BY id ASC LIMIT 8");
     $services = $stmt->fetchAll();
 } catch (PDOException $e) {
     $services = [];

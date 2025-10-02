@@ -87,7 +87,7 @@ try {
              <?php echo $service['description'] ?? 'No description available.'; ?>
 
             <div class="book_appointment_btn mt-5">
-                    <a href="https://calendly.com/sapient-kpo" title="Book an appointment" target="_blank">Enquire Now
+                    <a href="https://calendly.com/sapienceca/30min" title="Schedule a Free Consultation" target="_blank">Enquire Now
                         <img src="./assets/img/arrow-right.svg" alt="">
                     </a>
                 </div>
