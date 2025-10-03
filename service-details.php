@@ -54,6 +54,15 @@ try {
     object-fit: cover;   /* image crop thay to pan sundar lage */
     border-radius: 8px;  /* optional: thodo round corner */
   }
+ .description p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 160%;
+    /* text-align: left; */
+    color: var(--text);
+    /* width: 80%; */
+    margin: 0 auto;
+  }
 </style>
 
 
@@ -84,7 +93,7 @@ try {
           <div class="col-12 col-xl-11">
             <h2 class="mb-3"><?php echo htmlspecialchars($service['title'] ?? 'Service Not Found'); ?></h2>
             
-             <?php echo $service['description'] ?? 'No description available.'; ?>
+            <div class="description">  <?php echo $service['description'] ?? 'No description available.'; ?> </div>
 
             <div class="book_appointment_btn mt-5">
                     <a href="https://calendly.com/sapienceca/30min" title="Schedule a Free Consultation" target="_blank">Enquire Now

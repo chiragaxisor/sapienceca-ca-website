@@ -17,8 +17,8 @@ define('CONTACT_EMAIL', 'lchirag85@gmail.com'); // Change this to your actual em
 define('FROM_NAME', 'SapienceCA Website');
 define('SMTP_HOST', 'localhost'); // Change if using external SMTP
 define('SMTP_PORT', 587); // Change if using different port
-define('SMTP_USERNAME', 'contact@hirespyspaces.com.au'); // Leave empty if using local mail
-define('SMTP_PASSWORD', 'uezxgwskzqwjbaqn'); // Leave empty if using local mail
+define('SMTP_USERNAME', 'lchirag85@gmail.com'); // Leave empty if using local mail
+define('SMTP_PASSWORD', 'bhxlgfdmggteuxlf'); // Leave empty if using local mail
 define('SMTP_ENCRYPTION', 'tls'); // or 'ssl'
 
 // Email templates
@@ -27,22 +27,21 @@ function getContactEmailSubject($subject) {
 }
 
 function getContactEmailBody($fullname, $email, $phone, $subject, $message_text) {
-    return "
-New contact form submission from your website:
+    return "New contact form submission from your website:
 
-Name: $fullname
-Email: $email
-Phone: $phone
-Subject: $subject
+        Name: $fullname
+        Email: $email
+        Phone: $phone
+        Subject: $subject
 
-Message:
-$message_text
+        Message:
+        $message_text
 
----
-This message was sent from the contact form on your website.
-Time: " . date('Y-m-d H:i:s') . "
-IP Address: " . $_SERVER['REMOTE_ADDR'] . "
-";
+        ---
+        This message was sent from the contact form on your website.
+        Time: " . date('Y-m-d H:i:s') . "
+        IP Address: " . $_SERVER['REMOTE_ADDR'] . "
+        ";
 }
 
 function getReplyEmailBody($fullname) {

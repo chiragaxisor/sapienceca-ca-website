@@ -11,6 +11,26 @@
     <script src="assets/js/bootstrap.min.js"></script>
 </head>
 
+
+<style> 
+
+    .whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;   /* bottom thi distance */
+  right: 20px;    /* right side thi distance */
+  z-index: 1000;  /* upar rehva mate */
+}
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+
+</style>
 <body>
 
     <section class="footer_component">
@@ -26,7 +46,7 @@
             </div>
             <div class="col-md-3 contact_detail d-flex flex-column gap-3">
                 <h4>UNITED ARAB EMIRATES</h4>
-                <p class="contact-name">Nirav Patel</p>
+                <p class="contact-name"> <b> Nirav Patel </b></p>
                 <a href="javascript:void()">303, HBL Building, PO Box 28860, Bank Street, Bur Dubai, Dubai - UAE</a>
                 <div class="d-flex flex-column gap-1">
                     <a href="tel:+971554099388" title="+971 55 409 9388">
@@ -49,7 +69,7 @@
             </div>
             <div class="col-md-3 contact_detail d-flex flex-column gap-3">
                 <h4>INDIA</h4>
-                <p class="contact-name">Hatim Rupawala</p>
+                <p class="contact-name"> <b> Hatim Rupawala </b> </p>
                 <a href="javascript:void()">308-B, Shhlok Business Centre, Besides Apple Hospital, Udhna Darwaja, Ring
                     Road,Surat, Gujarat, India Pincode: 395002</a>
                 <div class="d-flex flex-column gap-1">
@@ -78,14 +98,14 @@
         <div class="container d-flex justify-content-between">
             <p>@ 2025 sapience. All rights reserved</p>
 
-            <!-- <div class="footer_box">
-                <div class="footer_policy">
+            <div class="footer_box">
+                <!-- <div class="footer_policy">
                     <a href="javascript:void(0)" title="Terms">Terms</a>
                     <a href="javascript:void(0)" title="Privacy">Privacy</a>
                     <a href="javascript:void(0)" title="Contact">Contact</a>
-                </div>
+                </div> -->
                 <div class="footer_social">
-                    <a href="https://www.youtube.com" target="_blank" title="Youtube">
+                    <!-- <a href="https://www.youtube.com" target="_blank" title="Youtube">
                         <img src="./assets/img/yt-icon.svg" alt="Youtube">
                     </a>
                     <a href="https://www.facebook.com" target="_blank" title="Facebook">
@@ -93,17 +113,32 @@
                     </a>
                     <a href="https://www.x.com" target="_blank" title="Twitter X">
                         <img src="./assets/img/twitter-icon.svg" alt="Twitter X">
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank" title="Instagram">
+                    </a> -->
+                    <a href="https://www.instagram.com/sapience_ca/?igsh=MTBoZTdpOTZ1NnlxYw%3D%3D&utm_source=qr#" target="_blank" title="Instagram">
                         <img src="./assets/img/insta-icon.svg" alt="Instagram">
                     </a>
-                    <a href="https://www.linkedin.com" target="_blank" title="LinkedIn">
+                    <a href="https://www.linkedin.com/company/sapience-ca/?viewAsMember=true" target="_blank" title="LinkedIn">
                         <img src="./assets/img/linkedin-icon.svg" alt="LinkedIn">
                     </a>
                 </div>
-            </div> -->
+            </div>
         </div>
     </section>
+
+
+    <a 
+    href="https://wa.me/71554099388?text=Hello%20I%20am%20interested%20in%20your%20services" 
+    class="whatsapp-float" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    >
+    <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+        alt="WhatsApp" 
+        width="50" 
+    />
+    </a>
+
 
 </body>
 

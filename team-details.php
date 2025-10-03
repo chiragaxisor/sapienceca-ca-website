@@ -54,6 +54,25 @@ try {
     object-fit: cover;   /* image crop thay to pan sundar lage */
     border-radius: 8px;  /* optional: thodo round corner */
   }
+
+  .description p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 160%;
+    /* text-align: left; */
+    color: var(--text);
+    /* width: 80%; */
+    margin: 0 auto;
+  }
+  .book_appointment_btn a {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 160%;
+    /* text-align: left; */
+    color: var(--text);
+    /* width: 80%; */
+    margin: 0 auto;
+  }
 </style>
 <div class="page-title bg-custom  text-white py-4">
   <div class="container d-lg-flex justify-content-between align-items-center">
@@ -83,10 +102,10 @@ try {
           <div class="col-12 col-xl-11">
             <h2 class="mb-3"><?php echo htmlspecialchars($team_member['name']); ?> ( <?php echo htmlspecialchars($team_member['position']); ?> )</h2>
             
-            <?php echo ($team_member['description']); ?>
+            <div class="description"> <?php echo ($team_member['description']); ?> </div>
 
             <div class="book_appointment_btn mt-5">
-                    <a href="https://calendly.com/sapienceca/30min" title="Schedule a Free Consultation" target="_blank">Enquire Now
+                    <a href="https://calendly.com/sapienceca/30min" title="Schedule a Free Consultation" target="_blank">Schedule a Free Consultation
                         <img src="./assets/img/arrow-right.svg" alt="">
                     </a>
                 </div>

@@ -31,12 +31,29 @@ try {
     $services = [];
 }
 ?>
+
+<style>
+    .mobile_dropdown {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile_dropdown_content {
+        display: none;
+        flex-direction: column;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+    .mobile_dropdown.open .mobile_dropdown_content {
+        display: flex;
+    }
+</style>
 <body>
 
     <section class="header_component">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="index.php" class="logo_box" title="Sapience">
-                <img src="./assets/img/logo.svg" alt="Logo">
+                <img src="./assets/img/logo.svg" alt="Logo" >
             </a>
 
             <!-- Desktop Menu -->
@@ -45,9 +62,9 @@ try {
                 <div class="dropdown">
                 <a href="about.php" title="About Us">About Us ▾</a>
                 <div class="dropdown-content">
-                    <a href="#">Who we are</a>
+                    <a href="about.php#whoweare">Who we are</a>
                     <a href="about.php#MeetOurTeam">Meet Choose Us</a>
-                    <a href="#">Careers</a>
+                    <a href="career.php">Careers</a>
                 </div>
                 </div>
 
@@ -66,7 +83,7 @@ try {
                         </div>
                     </div>
 
-                <a href="contact.php" title="Contact Us">Careers</a>
+                <a href="career.php" title="Career">Careers</a>
                 <a href="contact.php" title="Contact Us">Contact Us</a>
             </div>
 
@@ -83,7 +100,7 @@ try {
         </div>
 
         <!-- Mobile Side Drawer -->
-        <div class="mobile_menu">
+        <!-- <div class="mobile_menu">
             <div class="mobile_menu_header">
                 <a href="/" class="logo_box" title="Sapience">
                     <img src="./assets/img/logo.svg" alt="Logo">
@@ -96,7 +113,42 @@ try {
                 <a href="contact.php">Contact Us</a>
                 <a href="https://calendly.com/sapienceca/30min" target="_blank" class="book_btn">Schedule a Free Consultation</a>
             </div>
-        </div>
+        </div> -->
+
+        <div class="mobile_menu">
+                <div class="mobile_menu_header">
+                    <a href="/" class="logo_box" title="Sapience">
+                        <img src="./assets/img/logo.svg" alt="Logo">
+                    </a>
+                    <div class="close_menu">&times;</div>
+                </div>
+                <div class="mobile_menu_links">
+                    <a href="index.php">Home</a>
+                    <a href="about.php">About Us</a>
+                    
+                    <!-- Service dropdown inside mobile -->
+                    <div class="mobile_dropdown">
+                        <a href="javascript:void(0)">Services ▾</a>
+                        <div class="mobile_dropdown_content">
+                            <?php if (!empty($services)): ?>
+                                <?php foreach ($services as $service): ?>
+                                    <a href="service-details.php?id=<?php echo ($service['id']); ?>">
+                                        <?php echo htmlspecialchars($service['title']); ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <a href="career.php">Careers</a>
+                    <a href="contact.php">Contact Us</a>
+                    <a href="https://calendly.com/sapienceca/30min" target="_blank" class="book_btn">
+                        Schedule a Free Consultation
+                    </a>
+                </div>
+            </div>
+
+
     </section>
 
     <!-- header drawer -->
@@ -104,10 +156,27 @@ try {
         const hamburger = document.querySelector(".hamburger");
         const mobileMenu = document.querySelector(".mobile_menu");
         const closeMenu = document.querySelector(".close_menu");
-        hamburger.addEventListener("click", () => { mobileMenu.classList.add("active"); });
-        closeMenu.addEventListener("click", () => { mobileMenu.classList.remove("active"); });
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.add("active");
+        });
+        closeMenu.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+        });
+
+        // Close menu on link click
         document.querySelectorAll(".mobile_menu_links a").forEach(link => {
-            link.addEventListener("click", () => { mobileMenu.classList.remove("active"); });
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+            });
+        });
+
+        // Dropdown inside mobile
+        document.querySelectorAll(".mobile_dropdown > a").forEach(drop => {
+            drop.addEventListener("click", (e) => {
+                e.preventDefault();
+                drop.parentElement.classList.toggle("open");
+            });
         });
     </script>
 

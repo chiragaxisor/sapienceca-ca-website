@@ -1,19 +1,31 @@
 <?php 
+ob_start();
+session_start();
 include 'includes/header.php'; 
 include 'config/email_config.php'; // Include email configuration
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+$mail = new PHPMailer(true);
 
 // Mail sending functionality
 $message = '';
 $error = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_SESSION['form_submitted']) )  {
+
     // Sanitize input data
     $fullname = htmlspecialchars(trim($_POST['fullname'] ?? ''));
     $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
     $phone = htmlspecialchars(trim($_POST['phone'] ?? ''));
     $subject = htmlspecialchars(trim($_POST['subject'] ?? ''));
     $message_text = htmlspecialchars(trim($_POST['message'] ?? ''));
-    
+
     // Validation
     if (empty($fullname) || empty($email) || empty($subject) || empty($message_text)) {
         $error = 'Please fill in all required fields.';
@@ -27,54 +39,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email_subject = getContactEmailSubject($subject);
             $email_body = getContactEmailBody($fullname, $email, $phone, $subject, $message_text);
 
-            
             // Email headers
             $headers = "From: " . FROM_NAME . " <noreply@sapienceca.com>\r\n";
             $headers .= "Reply-To: $email\r\n";
             $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
             $headers .= "X-Mailer: PHP/" . phpversion();
             
-            // Send email to admin
-            // $admin_sent = mail($admin_email, $email_subject, $email_body, $headers);
-            $admin_sent = mail('lchirag85@gmail.com', $email_subject, $email_body, $headers);
+            $mail->SMTPDebug  = 0; // Debug માટે 2 કરો
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'lchirag85@gmail.com';        // તમારું Gmail
+            $mail->Password   = 'bhxlgfdmggteuxlf';      // Gmail App Password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS
+            $mail->Port       = 587;
 
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
+            //Recipients
+            $mail->setFrom('nirav@sapienceca.com', 'Your Name');
+            $mail->addAddress('nirav@sapienceca.com', 'Recipient'); 
 
-            $admin_sent = mail('lchirag85@gmail.com', $email_subject, $email_body, $headers);
+            //Content
+            $mail->isHTML(true);
 
-            if ($admin_sent) {
-                // echo "✅ Mail sent successfully.";
-            } else {
-              print_r(error_get_last());
-                // echo "❌ Mail failed to send. Please check server mail configuration.";
-            }
+            $mail->Subject = "Contact Us Form: $subject";
+            $mail->Body    = "
+                <h3>New Contact Us Message</h3>
+                <p><strong>Name:</strong> {$fullname}</p>
+                <p><strong>Email:</strong> {$email}</p>
+                <p><strong>Phone:</strong> {$phone}</p>
+                <p><strong>Subject:</strong> {$subject}</p>
+                <p><strong>Message:</strong><br>".nl2br($message_text)."</p>
+            ";
+            $mail->AltBody = "New Contact Us Message\n
+                Name: {$fullname}\n
+                Email: {$email}\n
+                Phone: {$phone}\n
+                Subject: {$subject}\n
+                Message: {$message_text}
+            ";
+            // Send
+            $mail->send();
 
+          $_SESSION['form_submitted'] = true;
 
-          // print_r($admin_sent);
-          // print_r($email_body);
-          // print_r($email_subject);
-          // print_r($admin_email);
-          // die();
-          // exit;
+          header("Location: ".$_SERVER['PHP_SELF']."?success=1");
+          ob_end_flush();
+          exit();
 
-            
-            
-            // Send auto-reply to user (optional)
-            $reply_subject = "Thank you for contacting SapienceCA";
-            $reply_body = getReplyEmailBody($fullname);
-            $reply_headers = "From: " . FROM_NAME . " <noreply@sapienceca.com>\r\n";
-            $reply_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-            
-            $reply_sent = mail($email, $reply_subject, $reply_body, $reply_headers);
-            
-            if ($admin_sent) {
-                $message = 'Thank you! Your message has been sent successfully. We will get back to you soon.';
-                // Clear form data after successful submission
-                $fullname = $email = $phone = $subject = $message_text = '';
-            } else {
-                $error = 'Sorry, there was an error sending your message. Please try again later.';
-            }
         } catch (Exception $e) {
             $error = 'Sorry, there was an error processing your request. Please try again later.';
         }
@@ -123,12 +134,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="container">
     <div class="row gy-3 gy-md-4 gy-lg-0 align-items-xl-center">
       <div class="col-12 col-lg-6">
-        <img class="img-fluid rounded" loading="lazy" src="./assets/img/contact-img-1.jpg" alt="Get in Touch">
+        <img class="img-fluid rounded" loading="lazy" src="./assets/img/5114855.jpg" alt="Get in Touch">
       </div>
       <div class="col-12 col-lg-6">
         <div class="row justify-content-xl-center">
           <div class="col-12 col-xl-11">
             <div class="bg-white border rounded shadow-sm overflow-hidden">
+
+            <?php
+              if (isset($_GET['success'])) {
+                    unset($_SESSION['form_submitted']);
+                    echo '<div class="alert alert-success m-2"> Thank you! Your message has been sent successfully. We will get back to you soon.</div>';
+                }
+              ?>
               <?php if ($message): ?>
                 <div class="alert alert-success">
                   <?php echo $message; ?>
@@ -142,12 +160,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <?php endif; ?>
               
               <form method="POST" action="">
-                <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
+                <div class="row gy-4 p-xl-5 m-1">
                   <div class="col-12">
                     <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo htmlspecialchars($fullname ?? ''); ?>" required placeholder="Enter Full Name">
                   </div>
-                  <div class="col-12 col-md-6">
+                  <div class="col-12">
                     <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                     <div class="input-group">
                       <span class="input-group-text">
@@ -158,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                       <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($email ?? ''); ?>" required placeholder="Enter Email">
                     </div>
                   </div>
-                  <div class="col-12 col-md-6">
+                  <div class="col-12">
                     <label for="phone" class="form-label">Phone Number</label>
                     <div class="input-group">
                       <span class="input-group-text">
@@ -179,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
-                      <button class="btn bg-custom btn-primary btn-lg" type="submit">Send Message</button>
+                      <button id="sendBtn" class="btn bg-custom btn-primary btn-lg" type="submit">Send Message</button>
                     </div>
                   </div>
                 </div>
@@ -190,21 +208,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     </div>
   </div>
-
-<!-- <div class=" my-4">
-  <div class="row">
-    <div class="col-6">
-      
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d69794.15096856387!2d55.22734403607849!3d25.201796243033538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f433adeaf8135%3A0x164c2eb559d909d4!2sHBL%20Habib%20Bank%20Limited!5e1!3m2!1sen!2sin!4v1759073305904!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      
-    </div>
-    <div class="col-6">
-      
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4495.279240187402!2d72.82915302526088!3d21.18297678050525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e43dafafdc1%3A0x70fb5b4f91f86eb5!2sShhlok%20Business%20Centre!5e1!3m2!1sen!2sin!4v1759073080047!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      
-    </div>
-  </div>
-</div> -->
 
 
 <div class="my-4">
@@ -237,44 +240,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div>
 
-
-
 </section>
 
+<script>
+      document.querySelector('form').addEventListener('submit', function() {
+      document.getElementById('sendBtn').disabled = true; // Button disable
+      document.getElementById('sendBtn').innerText = 'Sending...';
+  });
+</script>
 
-    <!-- <main>
-        <div class="container" style="max-width: 600px; margin: 120px auto 60px auto;">
-            <div class="contact-container" style="background: rgba(30,30,30,0.95); border-radius: 10px; box-shadow: 0 0 40px 0 #222, 0 0 0 1px #333; padding: 40px 32px 32px 32px; color: #fff; border: 1px solid #333;">
-                <h2 style="font-size:2.2rem;font-weight:700;margin-bottom:10px;">Contact Us</h2>
-                <p style="color:#ccc;margin-bottom:24px;font-size:1.05rem;">Get started on Moveney faster with dedicated implementation and support services or you can contact at <strong style="color:#fff;font-weight:600;text-decoration:underline;">support@moveney.com</strong></p>
-                <form class="contact-form">
-                    <label>Enter your Number</label>
-                    <div class="row" style="display:flex;gap:12px;margin-bottom:18px;">
-                        <div class="country-select" style="flex:0 0 120px;display:flex;align-items:center;background:#222;border:1px solid #444;border-radius:7px;padding:0 10px;height:48px;">
-                            <img src="https://flagcdn.com/gb.svg" alt="UK Flag" style="width:24px;height:18px;margin-right:8px;border-radius:3px;">
-                            <select style="background:transparent;color:#fff;border:none;font-size:1rem;outline:none;">
-                                <option value="+44">+44</option>
-                                <option value="+91">+91</option>
-                                <option value="+1">+1</option>
-                            </select>
-                        </div>
-                        <input type="text" placeholder="Phone Number" style="flex:1;height:48px;background:#222;border:1px solid #444;border-radius:7px;color:#fff;font-size:1rem;padding:0 16px;">
-                    </div>
-                    <label>Email Address</label>
-                    <input type="email" placeholder="Email address" style="width:100%;background:#222;border:1px solid #444;border-radius:7px;color:#fff;font-size:1rem;padding:14px 16px;margin-bottom:18px;">
-                    <label>Your Message</label>
-                    <textarea placeholder="Write here" style="width:100%;background:#222;border:1px solid #444;border-radius:7px;color:#fff;font-size:1rem;padding:14px 16px;margin-bottom:18px;min-height:120px;resize:vertical;"></textarea>
-                    <button type="submit" style="width:100%;background:#000;color:#fff;border:1.5px solid #444;border-radius:30px;font-size:1.15rem;font-weight:600;padding:14px 0;margin-top:10px;cursor:pointer;box-shadow:0 0 0 4px #191919;transition:background 0.2s,color 0.2s;">Send</button>
-                </form>
-            </div>
-        </div>
-    </main> -->
-
-    <!-- <section class="cta-action-section">
-        <div class="container cta-action-container">
-            <h2 class="cta-action-title">Are You Ready To Take Action? We Are Ready To Help.</h2>
-            <a href="https://calendly.com/sapienceca/30min" target="_blank" class="cta-action-btn">Get Started</a>
-        </div>
-    </section> -->
     
 <?php include 'includes/footer.php'; ?>

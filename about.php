@@ -66,7 +66,7 @@ color: #6c757d;
         <img class="img-fluid rounded" loading="lazy" src="img/AboutUs.jpeg" alt="About 1">
       </div>
       <div class="col-12 col-lg-6 col-xl-7">
-        <div class="row justify-content-xl-center">
+        <div class="row justify-content-xl-center" id="whoweare">
           <div class="col-12 col-xl-11 about">
             <h2 class="mb-3">About Us</h2>
             <!-- <p class="lead fs-4 text-secondary mb-3">We help people to build incredible brands and superior products. Our perspective is to furnish outstanding captivating services.</p> -->
